@@ -2,6 +2,11 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+      <h3 class="welcome_back">Welcome back, {{user.username | title}}!</h3>
+
+{% endif %}
+
 {% if not user.is_authenticated %}
 <h1>Welcome! Please login or register.</h1>
 {% endif %}

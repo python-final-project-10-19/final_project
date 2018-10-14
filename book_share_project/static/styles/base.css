@@ -86,3 +86,7 @@ nav li:hover a {
     color: rgb(191,187,172);
     font-weight: 200;
 }
+
+button {
+    cursor: pointer;
+}
