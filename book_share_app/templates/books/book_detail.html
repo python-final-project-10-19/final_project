@@ -1,0 +1,13 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<div class="book_detail">
+  <h3>{{ book.title | upper }}</h3>
+  <p>BY: {{ book.author }}</p>
+  <p>PUBLISHED: {{ book.year }}</p>
+  <p>DATE ADDED: {{ book.date_added | date:"DATE_FORMAT" }}</p>
+  <p>LAST BORROWED: {{ book.last_borrowed | date:"DATE_FORMAT" }}</p>
+  <p>STATUS: {{ book.status | title }}</p>
+  <li><a href="{% url "book_list" %}">Back...</a></li>
+</div>
+{% endblock  %}

@@ -1,0 +1,9 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+{% if not user.is_authenticated %}
+<h1>Welcome! Please login or register.</h1>
+{% endif %}
+
+{% endblock %}
