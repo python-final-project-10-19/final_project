@@ -18,15 +18,15 @@
           <li><a href="{% url "home" %}">Home</a></li>
 
         {% if not user.is_authenticated %}
-          <li><a href="{% url "django_registration_register" %}">Register</a></li>
-          <li><a href="{% url "login" %}">Login</a></li>
+          {% comment %} <li><a href="{% url "django_registration_register" %}">Register</a></li> {% endcomment %}
+          <li><a href="http://localhost:8000/accounts/facebook/login/?process=login">Login</a></li>
         {% elif user.is_superuser %}
           <li><a href="{% url "admin:index" %}">Admin Console</a></li>
           <li><a href="{% url "book_list" %}">Books</a></li>
-          {% comment %} <li><a href="{% url "logout" %}">Logout</a></li> {% endcomment %}
+          <li><a href="{% url "logout" %}">Logout</a></li>
         {% else %}
           <li><a href="{% url "book_list" %}">Books</a></li>
-          {% comment %} <li><a href="{% url "logout" %}">Logout</a></li> {% endcomment %}
+          <li><a href="{% url "logout" %}">Logout</a></li>
         {% endif %}
 
 
@@ -35,10 +35,7 @@
 
   </header>
   <main>
-    {% if user.is_authenticated %}
-      <h3 class="welcome_back">Welcome back, {{user.username | title}}!</h3>
 
-    {% endif %}
 
     {% block content%}
     <h3>No Content</h3>
