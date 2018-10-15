@@ -7,7 +7,7 @@ from django.core.validators import MaxValueValidator
 
 
 class Profile(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profiles')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profiles')
     username = models.CharField(max_length=48, null=True)
     email = models.CharField(max_length=48, null=True)
     first_name = models.CharField(max_length=48, null=True)
@@ -29,7 +29,7 @@ class Book(models.Model):
         ('checked out', 'Checked Out'),
     ]
 
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
     profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='books')
     owner = models.IntegerField()
     borrower = models.IntegerField()
