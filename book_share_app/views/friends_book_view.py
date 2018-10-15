@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.core.exceptions import PermissionDenied
-from .models import Book, Profile
+from ..models import Book, Profile
 import requests
 import os
 
