@@ -8,6 +8,11 @@ django = "*"
 "psycopg2-binary" = "*"
 django-registration = "*"
 django-allauth = "*"
+jupyter = "*"
+numpy = "*"
+opencv-python = "*"
+ipykernel = "*"
+matplotlib = "*"
 
 [dev-packages]
 factory-boy = "*"
