@@ -17,10 +17,10 @@ class Profile(models.Model):
     friends = ArrayField(models.CharField(max_length=48), null=True)
 
     def __str__(self):
-        return f'Profile: {self.name} ({self.fb_id})'
+        return f'Profile: {self.username} ({self.fb_id})'
 
     def __repr__(self):
-        return f'Profile: {self.name} ({self.fb_id})'
+        return f'Profile: {self.username} ({self.fb_id})'
 
 
 class Book(models.Model):

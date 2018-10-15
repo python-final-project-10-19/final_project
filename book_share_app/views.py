@@ -6,12 +6,14 @@ import os
 
 
 def book_list_view(request):
+    # Instead of permission denied, consider a redirect to the home page.
     if not request.user.is_authenticated:
         raise PermissionDenied
 
     profile = Profile.objects.filter(
-        user__username=request.user.username
+        user__id=request.user.id
         )
+    print(profile)
     fb_id = list(profile.values('fb_id'))[0]['fb_id']
 
     endpoint = 'https://graph.facebook.com/{}?fields=friends'.format(fb_id)
@@ -25,7 +27,8 @@ def book_list_view(request):
 
     profile.update(friends=friends)
 
-    books = Book.objects.filter(user__username=request.user.username)
+    # TODO: We need to find books corresponding to each friends fb_id
+    books = Book.objects.filter(user__id=request.user.id)
 
     context = {
         'books': books

@@ -8,9 +8,9 @@ import os
 
 def home_view(request):
     if request.user.is_authenticated:
-        profile = Profile.objects.filter(user__username=request.user.username)
+        profile = Profile.objects.filter(user__id=request.user.id)
 
-        fb_account = SocialAccount.objects.filter(user__username=request.user.username)
+        fb_account = SocialAccount.objects.filter(user__id=request.user.id)
 
         # We have the right social_account instance (i.e., table row). There has to be an easier way to grab the uid (i.e., the cell in that row)
         uid = list(fb_account.values('uid'))[0]['uid']
