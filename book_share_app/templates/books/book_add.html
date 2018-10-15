@@ -1,0 +1,12 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <h1>Search for a book</h1>
+
+    <form action="/book/add/" method="POST">
+       {% csrf_token%} 
+       {{ form }}
+       
+        <input type="submit" value="Submit" placeholder='e.g., Harry Potter, J.K. Rowlings'/>
+    </form>
+{% endblock %}
