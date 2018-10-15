@@ -25,7 +25,8 @@
           <li><a href="{% url "book_list" %}">Books</a></li>
           <li><a href="{% url "logout" %}">Logout</a></li>
         {% else %}
-          <li><a href="{% url "book_list" %}">Books</a></li>
+          <li><a href="{% url "book_add" %}">Add Books</a></li>
+          <li><a href="{% url "book_list" %}">Friends Collection</a></li>
           <li><a href="{% url "logout" %}">Logout</a></li>
         {% endif %}
 
