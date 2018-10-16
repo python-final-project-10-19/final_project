@@ -3,6 +3,7 @@ from .factories import UserFactory
 from django.urls import reverse
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.sites.models import Site
+import datetime
 
 # class TestData(TestCase):
 
@@ -27,29 +28,29 @@ class TestBaseViews(TestCase):
         """
         self.user = UserFactory()
         self.user.save()
-        # SocialAccount.objects.create(
-        #         provider='facebook',
-        #         name='Books Share',
-        #         client_id='278758722745488',
-        #         secret='c8a69a48cf6e88181465bf81be8851ce',
-        #     )
+        SocialAccount.objects.create(
+                provider='facebook',
+                uid=100128270978326,
+                last_login=datetime.datetime.now(),
+                date_joined=datetime.datetime.now(),
+                extra_data='',
+                user_id=self.user.id,
+                )
         self.c = Client()
 
     def test_home_page_without_login(self):
         """If not logged in, user should see login button.
         """
-        res = self.c.get('', follow=True)
-        self.assertEqual(res.status_code, 200)
-        self.assertIn(b'Login', res.content)
+        response = self.c.get('', follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Login', response.content)
 
     def test_home_page_with_login(self):
         """If logged in, user should see logout button.
         """
-        self.c.login(
-            username=self.user.username,
-            password='1qaz@WSX'
-        )
-        res = self.c.get('account/login/', follow=True)
+        self.c.force_login(self.user)
+
+        res = self.c.get('')
         self.assertEqual(res.status_code, 200)
         self.assertIn(b'Logout', res.content)
 

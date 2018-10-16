@@ -53,7 +53,10 @@ def book_add_view(request):
 
 
 def book_post_view(request):
+
     if request.method == "POST":
+        import pdb; pdb.set_trace()
+        # TODO: Add this book to book model for that user.
         print(request.POST)
 
     return redirect('/books/add/')

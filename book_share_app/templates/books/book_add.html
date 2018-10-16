@@ -15,6 +15,9 @@
         <p>{{ result.author }}</p>
         <input type="button" id="add-button-{{ i }}" value="Add to your collection" onclick="test({{result}}, {{ i }})" />
     {% endfor %}
+
+
+    
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery/jquery-3.3.1.min.js"></script>
     <script>
