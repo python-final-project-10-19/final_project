@@ -13,7 +13,7 @@ def book_list_view(request):
     profile = Profile.objects.filter(
         user__id=request.user.id
         )
-    print(profile)
+    # print(profile)
     fb_id = list(profile.values('fb_id'))[0]['fb_id']
 
     endpoint = 'https://graph.facebook.com/{}?fields=friends'.format(fb_id)

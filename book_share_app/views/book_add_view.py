@@ -11,7 +11,7 @@ def book_add_view(request):
     if request.method == "POST":
         form = AddBookForm()
         input_value = request.POST['query']
-        print(input_value)
+        # print(input_value)
         response = requests.get('https://www.googleapis.com/books/v1/volumes?q={}&maxResults=4'.format(input_value)).json()
         results_list = response['items']
 
