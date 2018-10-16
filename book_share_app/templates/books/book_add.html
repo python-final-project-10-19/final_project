@@ -1,15 +1,45 @@
 {% extends "base/base.html" %}
 
+
 {% block content %}
     <h1>Search for a book</h1>
 
     <form action="/books/add/" method="POST">
-      {% csrf_token%}
+      {% csrf_token %}
       {{ form }}
       <input type="submit" value="Submit" placeholder='e.g., Harry Potter, J.K. Rowlings'/>
     </form>
-    {% for result in results %}
+    {% for i, result in results %}
+        <img src="{{ result.image_url }}"/>
         <p>{{ result.title }}</p>
         <p>{{ result.author }}</p>
-      {% endfor %}
+        <input type="button" id="add-button-{{ i }}" value="Add to your collection" onclick="test({{result}}, {{ i }})" />
+    {% endfor %}
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery/jquery-3.3.1.min.js"></script>
+    <script>
+      var csrftoken = Cookies.get('csrftoken');
+
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+
+        function test(context, index){
+          $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+          $.ajax({
+            type: "POST",
+            url: '/books/post/',
+            data: context,
+            success: $(`#add-button-${index}`).after( "<span>Added to your collection</span>" ),
+            });
+        }
+      </script>
 {% endblock %}

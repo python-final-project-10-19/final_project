@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_registration',
     'book_share_app',
     'book_share_project',
+    'jquery',
 ]
 
 MIDDLEWARE = [

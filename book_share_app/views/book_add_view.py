@@ -45,8 +45,15 @@ def book_add_view(request):
                 'image_url': image_url,
                 # 'purchase_link': result['saleInfo']['buyLink'],
                 })
-        print(context)
+        # print(context)
     else:
         form = AddBookForm()
 
-    return render(request, 'books/book_add.html', {'form': form, 'results': context['results']})
+    return render(request, 'books/book_add.html', {'form': form, 'results': enumerate(context['results'])})
+
+
+def book_post_view(request):
+    if request.method == "POST":
+        print(request.POST)
+
+    return redirect('/books/add/')

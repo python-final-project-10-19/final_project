@@ -13,6 +13,7 @@ numpy = "*"
 opencv-python = "*"
 ipykernel = "*"
 matplotlib = "*"
+django-jquery = "*"
 
 [dev-packages]
 factory-boy = "*"

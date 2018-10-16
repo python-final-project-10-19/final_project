@@ -1,0 +1,39 @@
+.book_item {
+    background-color: rgb(191,187,172, 0.6);
+    border: rgb(63,66,63) 1px solid;
+    box-shadow: 1px 1px rgb(63,66,63, 0.6);
+    width: 250px;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.book_item:hover {
+    background-color:rgb(63,66,63, 0.8);
+    color: rgb(191,187,172);
+}
+
+.book_item h3 {
+    font-weight: 400;
+    margin: 3px;
+}
+
+.book_item h4 {
+    font-weight: 200;
+    margin: 3px;
+}
+
+
+.welcome_back {
+    display: inline-block;
+    margin: 0px;
+}
+
+.book_list a:hover {
+
+}
+
+.book_detail > li {
+    display: block;
+    text-decoration: underline;
+}
