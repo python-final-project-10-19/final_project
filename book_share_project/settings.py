@@ -43,10 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_nose',
     'django_registration',
-    'book_share_app',
     'book_share_project',
-    # 'jquery',
+    'book_add_app',
+    'book_collections_app',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +77,13 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=book_share_project, book_add_app, book_collections_app',
 ]
 
 WSGI_APPLICATION = 'book_share_project.wsgi.application'

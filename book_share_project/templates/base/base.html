@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Book Lender</title>
+  <title>Book Share Pro</title>
   <link rel="stylesheet" href="{% static "styles/normalize.css" %}">
   <link rel="stylesheet" href="{% static "styles/base.css" %}">
   <link rel="stylesheet" href="{% static "styles/registration.css" %}">
@@ -13,7 +13,7 @@
 </head>
 <body>
   <header>
-    <h1>Book Lender</h1>
+    <h1>Book Share Pro</h1>
     <nav>
       <ul class="nav">
           <a href="{% url "home" %}"><li>Home</li></a>
@@ -26,8 +26,8 @@
           <a href="{% url "book_list" %}"><li>Books</li></a>
           <a href="{% url "logout" %}"><li>Logout</li></a>
         {% else %}
-          <a href="{% url "book_add" %}"><li>Add Books</li></a>
-          <a href="{% url "book_list" %}"><li>Collections</li></a>
+          <a href="{% url "book_add_landing" %}"><li>Add Books</li></a>
+          <a href="{% url "book_list_landing" %}"><li>Collections</li></a>
           <a href="{% url "logout" %}"><li>Logout</li></a>
         {% endif %}
 

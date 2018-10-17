@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.exceptions import PermissionDenied
-from book_share_app.models import Profile
+from book_add_app.models import Profile
 from allauth.socialaccount.models import SocialAccount
 import requests
 import os
@@ -8,6 +8,7 @@ import os
 
 def home_view(request):
     if request.user.is_authenticated:
+
         profile = Profile.objects.filter(user__id=request.user.id)
 
         fb_account = SocialAccount.objects.filter(user__id=request.user.id)
