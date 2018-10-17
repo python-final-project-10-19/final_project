@@ -1,12 +1,26 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.core.exceptions import PermissionDenied
-from ..models import Book, Profile
+from book_add_app.models import Book, Profile
 import requests
 import os
 
 
 def book_list_view(request):
-    # Instead of permission denied, consider a redirect to the home page.
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    # Setting default to friends collection view
+    return redirect('friends_collection')
+
+
+def personal_view(request):
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    return render(request, 'collections/book_list_personal.html')
+
+
+def friends_view(request):
     if not request.user.is_authenticated:
         return redirect('home')
 
@@ -47,9 +61,7 @@ def book_list_view(request):
         'books': all_books
     }
 
-
-
-    return render(request, 'books/book_list.html', context)
+    return render(request, 'collections/book_list_friends.html', context)
 
 
 # def book_detail_view(request, pk=None):

@@ -1,12 +1,20 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.core.exceptions import PermissionDenied
-from ..models import Book, Profile
+from book_add_app.models import Book, Profile
 import requests
 import os
-from ..forms import AddBookForm
+from book_add_app.forms import AddBookForm
 
 
-def book_add_view(request):
+def book_list_view(request):
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    # Setting default to google books api search
+    return redirect('book_search')
+
+
+def book_add_search(request):
     if not request.user.is_authenticated:
         return redirect('home')
 
@@ -53,7 +61,14 @@ def book_add_view(request):
     else:
         form = AddBookForm()
 
-    return render(request, 'books/book_add.html', {'form': form, 'results': enumerate(context['results'])})
+    return render(request, 'add/book_add_google.html', {'form': form, 'results': enumerate(context['results'])})
+
+
+def book_add_scan(request):
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    return render(request, 'add/book_add_scan.html')
 
 
 def book_post_view(request):
@@ -73,5 +88,4 @@ def book_post_view(request):
             author=request.POST['author'],
         )
 
-
-    return redirect('/books/add/')
+    return redirect('/add/search')

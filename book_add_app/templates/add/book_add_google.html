@@ -1,10 +1,10 @@
-{% extends "base/base.html" %}
+{% extends "add/book_add_base.html" %}
 
 
-{% block content %}
+{% block add_content %}
     <h1>Search for a book</h1>
 
-    <form action="/books/add/" method="POST">
+    <form action="/add/search/" method="POST">
       {% csrf_token %}
       {{ form }}
       <input type="submit" value="Submit" placeholder='e.g., Harry Potter, J.K. Rowlings'/>
@@ -17,7 +17,7 @@
     {% endfor %}
 
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery/jquery-3.3.1.min.js"></script>
     <script>
@@ -39,7 +39,7 @@
 
           $.ajax({
             type: "POST",
-            url: '/books/post/',
+            url: '/add/post/',
             data: context,
             success: $(`#add-button-${index}`).after( "<span>Added to your collection</span>" ),
             });

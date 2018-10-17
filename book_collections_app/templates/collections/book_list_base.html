@@ -1,0 +1,15 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<h1 class="heading">Collections</h1>
+    <ul class="sub-nav">
+      <a href="{% url "personal_collection" %}"><li>Your Books</li></a>
+      <a href="{% url "friends_collection" %}"><li>FB Friends' Books</li></a>
+    </ul>
+  <div class="book_list">
+    {% block list_content%}
+      <h3>No Content</h3>
+    {% endblock %}
+
+  </div>
+{% endblock %}

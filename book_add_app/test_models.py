@@ -2,7 +2,7 @@ from django.test import TestCase, RequestFactory
 from book_share_project.factories import UserFactory
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.models import User
-from book_share_app.models import Book, Profile
+from book_add_app.models import Book, Profile
 import datetime
 
 
