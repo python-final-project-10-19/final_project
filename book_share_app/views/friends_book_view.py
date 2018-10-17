@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.core.exceptions import PermissionDenied
-from .models import Book, Profile
+from ..models import Book, Profile
 import requests
 import os
 
@@ -13,7 +13,7 @@ def book_list_view(request):
     profile = Profile.objects.filter(
         user__id=request.user.id
         )
-    print(profile)
+
     fb_id = list(profile.values('fb_id'))[0]['fb_id']
 
     endpoint = 'https://graph.facebook.com/{}?fields=friends'.format(fb_id)
@@ -26,13 +26,28 @@ def book_list_view(request):
         friends.append(friend['id'])
 
     profile.update(friends=friends)
+    all_books = []
+    for friend in friends:
+        books = Book.objects.filter(owner=friend)
+        friend_profile = Profile.objects.filter(fb_id=friend)
+        # import pdb; pdb.set_trace()
+        if len(friend_profile):
+            friend_name = list(friend_profile.values('first_name'))[0]['first_name'] + ' ' + list(friend_profile.values('last_name'))[0]['last_name']
 
-    # TODO: We need to find books corresponding to each friends fb_id
-    books = Book.objects.filter(user__id=request.user.id)
+        if len(books):
+            for book in books.values():
+                book_obj = {
+                    'title': book['title'],
+                    'author': book['author'],
+                    'owner': friend_name
+                    }
+                all_books.append(book_obj)
 
     context = {
-        'books': books
+        'books': all_books
     }
+
+
 
     return render(request, 'books/book_list.html', context)
 

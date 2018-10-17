@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_registration',
     'book_share_app',
     'book_share_project',
+    # 'jquery',
 ]
 
 MIDDLEWARE = [
@@ -138,7 +139,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-SITE_ID = 2
+SITE_ID = os.environ.get('SITE_ID', 1)
+
 
 AUTHENTICATION_BACKENDS = (
 
