@@ -11,7 +11,7 @@ def book_add_view(request):
     if request.method == "POST":
         form = AddBookForm()
         input_value = request.POST['query']
-        print(input_value)
+
         response = requests.get('https://www.googleapis.com/books/v1/volumes?q={}&maxResults=4'.format(input_value)).json()
         results_list = response['items']
 
@@ -45,7 +45,7 @@ def book_add_view(request):
                 'image_url': image_url,
                 # 'purchase_link': result['saleInfo']['buyLink'],
                 })
-        # print(context)
+
     else:
         form = AddBookForm()
 
@@ -68,6 +68,6 @@ def book_post_view(request):
             title=request.POST['title'],
             author=request.POST['author'],
         )
-        print(request.POST)
+
 
     return redirect('/books/add/')

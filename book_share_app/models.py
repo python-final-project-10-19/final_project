@@ -17,10 +17,10 @@ class Profile(models.Model):
     friends = ArrayField(models.CharField(max_length=48), null=True)
 
     def __str__(self):
-        return f'Profile: {self.username} ({self.fb_id})'
+        return 'Profile: {} ({})'.format(self.username, self.fb_id)
 
     def __repr__(self):
-        return f'Profile: {self.username} ({self.fb_id})'
+        return 'Profile: {} ({})'.format(self.username, self.fb_id)
 
 
 class Book(models.Model):
@@ -42,10 +42,10 @@ class Book(models.Model):
     pre_save_status = models.CharField(max_length=48, editable=False)
 
     def __str__(self):
-        return f'Book: {self.title} ({self.status})'
+        return 'Book: {} ({})'.format(self.title, self.status)
 
     def __repr__(self):
-        return f'Book: {self.title} ({self.status})'
+        return 'Book: {} ({})'.format(self.title, self.status)
 
 
 @receiver(models.signals.post_save, sender=Book)

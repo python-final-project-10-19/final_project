@@ -16,19 +16,19 @@
     <h1>Book Lender</h1>
     <nav>
       <ul class="nav">
-          <li><a href="{% url "home" %}">Home</a></li>
+          <a href="{% url "home" %}"><li>Home</li></a>
 
         {% if not user.is_authenticated %}
           {% comment %} <li><a href="{% url "django_registration_register" %}">Register</a></li> {% endcomment %}
-          <li><a href="/accounts/facebook/login/?process=login">Login</a></li>
+          <a href="/accounts/facebook/login/?process=login"><li>Login</li></a>
         {% elif user.is_superuser %}
-          <li><a href="{% url "admin:index" %}">Admin Console</a></li>
-          <li><a href="{% url "book_list" %}">Books</a></li>
-          <li><a href="{% url "logout" %}">Logout</a></li>
+          <a href="{% url "admin:index" %}"><li>Admin Console</li></a>
+          <a href="{% url "book_list" %}"><li>Books</li></a>
+          <a href="{% url "logout" %}"><li>Logout</li></a>
         {% else %}
-          <li><a href="{% url "book_add" %}">Add Books</a></li>
-          <li><a href="{% url "book_list" %}">Friends Collection</a></li>
-          <li><a href="{% url "logout" %}">Logout</a></li>
+          <a href="{% url "book_add" %}"><li>Add Books</li></a>
+          <a href="{% url "book_list" %}"><li>Collections</li></a>
+          <a href="{% url "logout" %}"><li>Logout</li></a>
         {% endif %}
 
 
