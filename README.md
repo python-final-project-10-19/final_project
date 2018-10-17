@@ -57,7 +57,7 @@ Require applications:
     - `sudo apt-get update && sudo apt-get upgrade -y`
 
 1. Install essential applications/dependencies to linux console
-    - ex. `sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx gunicorn psycopg2-binary -y`
+    - ex. `sudo apt-get install python3-venv python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx gunicorn psycopg2-binary -y`
 
 1. Install virtual environment 'venv' and create directory with environement files name 'ENV'
     - `python3 -m venv ENV`
@@ -197,6 +197,10 @@ Require applications:
     nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
     nginx: configuration file /etc/nginx/nginx.conf test is successful
     ```
+    - If you get ' nginx: [emerg] open() "/home/ubuntu/.local/nginx.access.log" failed (2: No such file or directory) ' error:
+        - Create a nginx.access.log file: 
+            - `mkdir .local`
+            - `touch .local/nginx.access.log`
     - Check the status: `sudo service nginx status`
         - restart if fails: `sudo service nginx restart`
 
