@@ -28,10 +28,20 @@ def book_list_view(request):
     profile.update(friends=friends)
 
     # TODO: We need to find books corresponding to each friends fb_id
-    books = Book.objects.filter(user__id=request.user.id)
+    # books = Book.objects.filter(user__id=request.user.id)
+    books = []
+    for friend in friends:
+        print(friend)
+        books = Book.objects.filter(owner=friend)
+        if len(books):
+            book_obj = {'title': '', 'author': ''}
+            for book in books:
+                # import pdb; pdb.set_trace()
+                book_obj['title'] = list(book.values('title'))[0]['title']
+                book_obj['author'] = list(book.values('author'))[0]['author']
 
     context = {
-        'books': books
+        'books': book_obj
     }
 
     return render(request, 'books/book_list.html', context)
