@@ -34,8 +34,16 @@ TBD
 ## Database Schema
 TBD
 
-## Quick deploying to AWS EC2
+## Deploying AWS EC2 instance using Django Framework
 #### Deploying Django application to AWS EC2 instance (without Docker)
+Require applications:
+- Python 3.6
+- Django 2.1.2
+- AWS EC2 instance with Ubuntu 16.04
+- Nginx
+- Gunicorn
+- Venv
+- Pip
 
 1. Create an EC2 instance and setup with a keypair using AWS console
 1. From your root (after configuring .ssh/*.pem file), enter the AWS linux environment
