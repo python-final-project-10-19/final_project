@@ -4,7 +4,7 @@
 <div class="book_list">
     <p>Here are your books:</p>
   {% for book in books %}
-  <a href="{% url "book_detail" pk=book.id %}">
+  {% comment %} <a href="{% url "book_detail" pk=book.id %}"> {% endcomment %}
   <div class="book_item">
 
   <h3>{{book.title}}</h3>

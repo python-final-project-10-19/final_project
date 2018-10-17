@@ -30,9 +30,9 @@ class Book(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
-    profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='books')
-    owner = models.IntegerField()
-    borrower = models.IntegerField()
+    # profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='books')
+    owner = models.CharField(max_length=48, null=True)
+    borrower = models.CharField(max_length=48, null=True)
     title = models.CharField(max_length=48)
     author = models.CharField(max_length=4096)
     year = models.CharField(max_length=48)

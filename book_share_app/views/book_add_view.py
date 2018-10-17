@@ -55,8 +55,19 @@ def book_add_view(request):
 def book_post_view(request):
 
     if request.method == "POST":
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         # TODO: Add this book to book model for that user.
+        # user = User()
+
+        fb_account = Profile.objects.filter(user__id=request.user.id)
+        fb_id = list(fb_account.values('fb_id'))[0]['fb_id']
+
+        Book.objects.create(
+            user=request.user,
+            owner=fb_id,
+            title=request.POST['title'],
+            author=request.POST['author'],
+        )
         print(request.POST)
 
     return redirect('/books/add/')

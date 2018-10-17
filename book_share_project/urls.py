@@ -22,5 +22,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/logout', logout_view, name='logout'),
     path('', home_view, name='home'),
-    path('books/', include('book_share_app.urls'))
+    path('books/', include('book_share_app.urls')),
 ]
