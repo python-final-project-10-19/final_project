@@ -1,29 +1,43 @@
-# from django.test import TestCase, RequestFactory
-# from django.contrib.auth.models import User
-# from .models import Book
+from django.test import TestCase, RequestFactory
+from book_share_project.factories import UserFactory
+from allauth.socialaccount.models import SocialAccount
+from django.contrib.auth.models import User
+from book_share_app.models import Book, Profile
+import datetime
 
 
-# class TestBookModel(TestCase):
-#     def setUp(self):
-#         self.user = User.objects.create(username='test', email='test@example.com')
-#         self.user.set_password('hello')
+class TestBookModel(TestCase):
+    def setUp(self):
+        """Test setup
+        """
+        self.user = UserFactory()
+        self.user.save()
+        SocialAccount.objects.create(
+                provider='facebook',
+                uid=100128270978326,
+                last_login=datetime.datetime.now(),
+                date_joined=datetime.datetime.now(),
+                extra_data='',
+                user_id=self.user.id,
+                )
 
-#         self.book = Book.objects.create(
-#             title='Feed the cat',
-#             author='Scruff McGruff',
-#             status='complete',
-#             user=self.user
-#         )
+    def test_profile_create(self):
+        social_account = SocialAccount.objects.get(user_id=self.user.id)
+        fb_id = social_account.uid
+        Profile.objects.create(
+                user=self.user,
+                username=self.user.username,
+                email=self.user.email,
+                first_name=self.user.first_name,
+                last_name=self.user.last_name,
+                fb_id=fb_id,
+            )
+        profile = Profile.objects.get(user_id=self.user.id)
+        self.assertEqual(profile.username, self.user.username)
 
-#         Book.objects.create(title='War and Peace', author='Tolstoy', status='complete', user=self.user)
-#         Book.objects.create(title='Walden', author='Thoreau', status='complete', user=self.user)
+    def test_book_create(self):
+        pass
 
-#     def test_book_titles(self):
-#         self.assertEqual(self.book.title, 'Feed the cat')
-
-#     def test_book_detail(self):
-#         book = Book.objects.get(title='Walden')
-#         self.assertEqual(book.author, 'Thoreau')
-
-
+    def test_profile_delete(self):
+        pass
 

@@ -8,6 +8,7 @@ import os
 
 def home_view(request):
     if request.user.is_authenticated:
+
         profile = Profile.objects.filter(user__id=request.user.id)
 
         fb_account = SocialAccount.objects.filter(user__id=request.user.id)

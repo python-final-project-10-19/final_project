@@ -7,11 +7,15 @@ from ..forms import AddBookForm
 
 
 def book_add_view(request):
+    if not request.user.is_authenticated:
+        return redirect('home')
+
     context = {'results': []}
     if request.method == "POST":
-        form = AddBookForm()
-        input_value = request.POST['query']
 
+        form = AddBookForm()
+        input_value = request.POST.get('query')
+        print('here is out input_value', input_value)
         response = requests.get('https://www.googleapis.com/books/v1/volumes?q={}&maxResults=4'.format(input_value)).json()
         results_list = response['items']
 

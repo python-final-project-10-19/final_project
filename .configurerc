@@ -1,0 +1,4 @@
+[run]
+source = final_project
+omit =
+    final_project/book_share_project/settings.py

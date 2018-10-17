@@ -15,6 +15,8 @@ ipykernel = "*"
 matplotlib = "*"
 django-jquery = "*"
 common = "*"
+django-nose = "*"
+coverage = "*"
 
 [dev-packages]
 factory-boy = "*"
