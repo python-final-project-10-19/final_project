@@ -64,7 +64,7 @@ def book_post_view(request):
 
         Book.objects.create(
             user=request.user,
-            owner=fb_id, 
+            owner=fb_id,
             title=request.POST['title'],
             author=request.POST['author'],
         )
