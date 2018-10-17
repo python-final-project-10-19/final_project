@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_nose',
     'django_registration',
     'book_share_app',
     'book_share_project',
@@ -76,6 +77,13 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=book_share_app,book_share_project',
 ]
 
 WSGI_APPLICATION = 'book_share_project.wsgi.application'

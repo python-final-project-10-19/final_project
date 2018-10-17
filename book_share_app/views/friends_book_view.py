@@ -8,7 +8,7 @@ import os
 def book_list_view(request):
     # Instead of permission denied, consider a redirect to the home page.
     if not request.user.is_authenticated:
-        raise PermissionDenied
+        return redirect('home')
 
     profile = Profile.objects.filter(
         user__id=request.user.id
