@@ -12,10 +12,27 @@ class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User
 
-    username = 'olivia'
-    email = 'mkyqzpevqr_1539464428@tfbnw.net'
-    first_name = 'Olivia'
-    last_name = 'Dingleberg'
+    # username = 'olivia'
+    # email = 'mkyqzpevqr_1539464428@tfbnw.net'
+    # first_name = 'Olivia'
+    # last_name = 'Dingleberg'
+    username = factory.Faker('user_name')
+    email = factory.Faker('email')
+    first_name = factory.Faker('first_name')
+    last_name = factory.Faker('last_name')
+
+
+class BookFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = Book
+
+    title = 'Home',
+    author = 'Marilynne Robinson',
+    user = factory.SubFactory(UserFactory)
+
+
+
 
 # class SocialAccountFactory(factory.django.DjangoModelFactory):
 #     class Meta:

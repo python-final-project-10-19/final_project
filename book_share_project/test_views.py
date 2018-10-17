@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from .factories import UserFactory
 from allauth.socialaccount.models import SocialAccount
 import datetime
+import requests
 
 
 class TestBaseViews(TestCase):
@@ -48,8 +49,7 @@ class TestBaseViews(TestCase):
         self.assertIn(b'Login', res.content)
 
     def test_collections_page_with_login(self):
-        """If logged in, user should see logout button.
-        """
+        """Login as a user, go to books route to see Collection page"""
         self.c.force_login(self.user)
         res = self.c.get('')
         res = self.c.get('/books', follow=True)
@@ -64,10 +64,23 @@ class TestBaseViews(TestCase):
         self.assertIn(b'Login', res.content)
 
     def test_add_book_form_brings_back_results(self):
-        """
-        """
+        """Test add book for google api to return book results"""
         self.c.force_login(self.user)
         res = self.c.post('/books/add/', data={'query': 'Lord of the rings'}, follow=True)
         self.assertEqual(res.status_code, 200)
         self.assertIn(b'Lord', res.content)
+
+    def test_book_post_view(self):
+        """Test add book to personal library """
+        self.c.force_login(self.user)
+        res = self.c.get('')
+        res = self.c.post('/books/post/', data={
+            'title': "Home",
+            'author': "Marilynne Robinson",
+            'description': "Returning ",
+            'image_url': "http://books.google.com/books"},
+                          follow=True)
+        self.assertEqual(res.status_code, 200)
+        self.assertIn(b'Home', res.content)
+
 

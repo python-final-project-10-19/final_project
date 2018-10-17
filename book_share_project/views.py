@@ -13,7 +13,8 @@ def home_view(request):
 
         fb_account = SocialAccount.objects.filter(user__id=request.user.id)
 
-        # We have the right social_account instance (i.e., table row). There has to be an easier way to grab the uid (i.e., the cell in that row)
+        # We have the right social_account instance (i.e., table row).
+        # There has to be an easier way to grab the uid (i.e., the cell in that row)
         uid = list(fb_account.values('uid'))[0]['uid']
 
         if not profile:

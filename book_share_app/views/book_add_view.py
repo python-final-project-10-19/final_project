@@ -69,9 +69,8 @@ def book_post_view(request):
         Book.objects.create(
             user=request.user,
             owner=fb_id,
-            title=request.POST['title'],
-            author=request.POST['author'],
+            title=request.POST.get('title'),
+            author=request.POST.get('author'),
         )
-
 
     return redirect('/books/add/')
