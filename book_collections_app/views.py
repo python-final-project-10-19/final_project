@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.core.exceptions import PermissionDenied
-from book_add_app.models import Book, Profile
+from book_share_project.models import Book, Profile
 import requests
 import os
 
@@ -33,6 +33,7 @@ def friends_view(request):
     endpoint = 'https://graph.facebook.com/{}?fields=friends'.format(fb_id)
     headers = {'Authorization': 'Bearer {}'.format(os.environ.get('FB_GRAPH_TOKEN'))}
     response = requests.get(endpoint, headers=headers).json()
+    # import pdb; pdb.set_trace()
 
     friends_data = response['friends']['data']
     friends = []

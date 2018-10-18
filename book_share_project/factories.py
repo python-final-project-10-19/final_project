@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from book_add_app.models import Profile, Book
+from book_share_project.models import Profile, Book
 from faker import Faker
 import factory
 
