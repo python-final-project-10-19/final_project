@@ -13,10 +13,10 @@
 </head>
 <body>
   <header>
-    <h1>Book Share Pro</h1>
+    <a href="{% url "home" %}"><h1>Book Share Pro</h1></a>
     <nav>
       <ul class="nav">
-          <a href="{% url "home" %}"><li>Home</li></a>
+
 
         {% if not user.is_authenticated %}
           {% comment %} <li><a href="{% url "django_registration_register" %}">Register</a></li> {% endcomment %}
@@ -26,6 +26,7 @@
           <a href="{% url "book_list" %}"><li>Books</li></a>
           <a href="{% url "logout" %}"><li>Logout</li></a>
         {% else %}
+          <a href="{% url "notifications" %}"><li>Home</li></a>
           <a href="{% url "book_add_landing" %}"><li>Add Books</li></a>
           <a href="{% url "book_list_landing" %}"><li>Collections</li></a>
           <a href="{% url "logout" %}"><li>Logout</li></a>

@@ -2,13 +2,51 @@
 
 {% block list_content %}
 <h1>Your Friends' Books</h1>
-  {% for book in books %}
+  {% for i, book in books %}
     <div class="book_item">
 
     <h3>{{book.title}}</h3>
     <h4>By: {{book.author}}</h4>
     <h4>Owned by: {{book.owner}}</h4>
+
+    {% if book.status == 'available' %}
+      <input type="button" id="request-button-{{ i }}" value="Request book" onclick="request_book({{book.id}}, {{  fb_id }}, {{ i }})"/>
+    {% elif book.status == 'checked out' %}
+      <p>Not available</p>
+    {% elif book.status == 'requested' and book.requester == fb_id  %}
+      <p>You already requested</p>
+    {% endif %}
+
     </div>
 
   {% endfor %}
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery/jquery-3.3.1.min.js"></script>
+  <script>
+    var csrftoken = Cookies.get('csrftoken');
+
+  function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+      function request_book(book_id, requester, index){
+        $.ajaxSetup({
+          beforeSend: function(xhr, settings) {
+              if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                  xhr.setRequestHeader("X-CSRFToken", csrftoken);
+              }
+          }
+      });
+
+        context = {'book_id': book_id, 'owner': requester }
+
+        $.ajax({
+          type: "POST",
+          url: '/collections/request/',
+          data: context,
+          success: $(`#request-button-${index}`).after( "<span>Request sent</span>" ),
+          });
+      }
+    </script>
 {% endblock %}

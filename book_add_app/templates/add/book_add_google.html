@@ -13,7 +13,7 @@
         <img src="{{ result.image_url }}"/>
         <p>{{ result.title }}</p>
         <p>{{ result.author }}</p>
-        <input type="button" id="add-button-{{ i }}" value="Add to your collection" onclick="test({{result}}, {{ i }})" />
+        <input type="button" id="add-button-{{ i }}" value="Add to your collection" onclick="add_to_collection({{result}}, {{ i }})" />
     {% endfor %}
 
 
@@ -28,7 +28,7 @@
       return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
   }
 
-        function test(context, index){
+        function add_to_collection(context, index){
           $.ajaxSetup({
             beforeSend: function(xhr, settings) {
                 if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
