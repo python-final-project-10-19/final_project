@@ -7,5 +7,6 @@ urlpatterns = [
     # path('<int:pk>', book_detail_view, name='book_detail')
     path('personal/', personal_view, name='personal_collection'),
     path('friends/', friends_view, name='friends_collection'),
+    path('request/', friends_view, name='friends_collection'),
 ]
 

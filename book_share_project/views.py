@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.exceptions import PermissionDenied
 from .models import Profile
 from allauth.socialaccount.models import SocialAccount
@@ -38,6 +38,13 @@ def home_view(request):
 
 def logout_view(request):
     if not request.user.is_authenticated:
-        raise PermissionDenied
+        return redirect('home')
 
     return render(request, 'custom_account/logout.html')
+
+
+def notifications_view(request):
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    return render(request, 'base/notifications.html')
