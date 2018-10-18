@@ -17,7 +17,28 @@ def personal_view(request):
     if not request.user.is_authenticated:
         return redirect('home')
 
-    return render(request, 'collections/book_list_personal.html')
+    profile = Profile.objects.filter(
+        user__id=request.user.id
+        )
+
+    fb_id = list(profile.values('fb_id'))[0]['fb_id']
+
+    all_books = []
+    books = Book.objects.filter(owner=fb_id)
+
+    if len(books):
+            for book in books.values():
+                book_obj = {
+                    'title': book['title'],
+                    'author': book['author'],
+                   }
+                all_books.append(book_obj)
+
+    context = {
+        'books': all_books
+    }
+
+    return render(request, 'collections/book_list_personal.html', context)
 
 
 def friends_view(request):
@@ -34,8 +55,11 @@ def friends_view(request):
     headers = {'Authorization': 'Bearer {}'.format(os.environ.get('FB_GRAPH_TOKEN'))}
     response = requests.get(endpoint, headers=headers).json()
     # import pdb; pdb.set_trace()
+    try:
+        friends_data = response['friends']['data']
+    except KeyError:
+        friends_data = []
 
-    friends_data = response['friends']['data']
     friends = []
     for friend in friends_data:
         friends.append(friend['id'])
