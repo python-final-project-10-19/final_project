@@ -147,7 +147,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-SITE_ID = os.environ.get('SITE_ID', 1)
+SITE_ID = os.environ.get('SITE_ID', 4)
 
 
 AUTHENTICATION_BACKENDS = (
