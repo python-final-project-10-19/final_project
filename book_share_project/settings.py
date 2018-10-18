@@ -81,9 +81,11 @@ TEMPLATES = [
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
+# Test settings
 NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=book_share_project, book_add_app, book_collections_app',
+
 ]
 
 WSGI_APPLICATION = 'book_share_project.wsgi.application'
