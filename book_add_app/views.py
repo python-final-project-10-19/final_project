@@ -1,12 +1,26 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, get_object_or_404, redirect, reverse, render_to_response
+from django.template import RequestContext
+from django.http import HttpResponseRedirect
+# from django.core.urlresolvers import reverse
 from django.core.exceptions import PermissionDenied
-from ..models import Book, Profile
+from book_share_project.models import Book, Profile, Document
 import requests
 import os
-from ..forms import AddBookForm
+from book_add_app.forms import AddBookForm, DocumentForm
 
 
-def book_add_view(request):
+
+
+
+def book_list_view(request):
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    # Setting default to google books api search
+    return redirect('book_search')
+
+
+def book_add_search(request):
     if not request.user.is_authenticated:
         return redirect('home')
 
@@ -53,7 +67,7 @@ def book_add_view(request):
     else:
         form = AddBookForm()
 
-    return render(request, 'books/book_add.html', {'form': form, 'results': enumerate(context['results'])})
+    return render(request, 'add/book_add_google.html', {'form': form, 'results': enumerate(context['results'])})
 
 
 def book_post_view(request):
@@ -73,5 +87,33 @@ def book_post_view(request):
             author=request.POST['author'],
         )
 
+    return redirect('/add/search')
 
-    return redirect('/books/add/')
+
+def book_add_scan(request):
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    # Handle file upload
+    if request.method == 'POST':
+        # import pdb; pdb.set_trace()
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = Document(docfile=request.FILES['docfile'])
+            newdoc.save()
+
+            # Redirect to the document list after POST
+            return redirect('book_scan')
+    else:
+        form = DocumentForm() # A empty, unbound form
+
+    # Load documents for the list page
+    documents = Document.objects.all()
+
+    # Render list page with the documents and the form
+    return render(request, 'add/book_add_scan.html', {'documents': documents, 'form': form})
+
+    # return render(request, 'add/book_add_scan.html')
+
+    # def index(request):
+    # return render_to_response('myapp/index.html')

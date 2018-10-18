@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.exceptions import PermissionDenied
-from book_share_app.models import Profile
+from .models import Profile
 from allauth.socialaccount.models import SocialAccount
 import requests
 import os

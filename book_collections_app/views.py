@@ -1,12 +1,26 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.core.exceptions import PermissionDenied
-from ..models import Book, Profile
+from book_share_project.models import Book, Profile
 import requests
 import os
 
 
 def book_list_view(request):
-    # Instead of permission denied, consider a redirect to the home page.
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    # Setting default to friends collection view
+    return redirect('friends_collection')
+
+
+def personal_view(request):
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    return render(request, 'collections/book_list_personal.html')
+
+
+def friends_view(request):
     if not request.user.is_authenticated:
         return redirect('home')
 
@@ -19,8 +33,12 @@ def book_list_view(request):
     endpoint = 'https://graph.facebook.com/{}?fields=friends'.format(fb_id)
     headers = {'Authorization': 'Bearer {}'.format(os.environ.get('FB_GRAPH_TOKEN'))}
     response = requests.get(endpoint, headers=headers).json()
+    # import pdb; pdb.set_trace()
+    try:
+        friends_data = response['friends']['data']
+    except KeyError:
+        friends_data = []
 
-    friends_data = response['friends']['data']
     friends = []
     for friend in friends_data:
         friends.append(friend['id'])
@@ -47,9 +65,7 @@ def book_list_view(request):
         'books': all_books
     }
 
-
-
-    return render(request, 'books/book_list.html', context)
+    return render(request, 'collections/book_list_friends.html', context)
 
 
 # def book_detail_view(request, pk=None):

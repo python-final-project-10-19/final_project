@@ -45,9 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_nose',
     'django_registration',
-    'book_share_app',
     'book_share_project',
-    # 'jquery',
+    'book_add_app',
+    'book_collections_app',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +83,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
     '--with-coverage',
-    '--cover-package=book_share_app,book_share_project',
+    '--cover-package=book_share_project, book_add_app, book_collections_app',
 ]
 
 WSGI_APPLICATION = 'book_share_project.wsgi.application'
@@ -146,6 +146,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 SITE_ID = os.environ.get('SITE_ID', 1)
 

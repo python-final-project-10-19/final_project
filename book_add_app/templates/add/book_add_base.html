@@ -1,0 +1,17 @@
+{% extends "base/base.html" %}
+
+
+{% block content %}
+  <h1 class="heading">Add Books</h1>
+    <ul class="sub-nav">
+      <a href="{% url "book_search" %}"><li>Search for a book</li></a>
+      <a href="{% url "book_scan" %}"><li>Smart Scan</li></a>
+    </ul>
+  <div class="book_add">
+
+    {% block add_content%}
+      <h3>No Content</h3>
+    {% endblock %}
+
+
+{% endblock %}

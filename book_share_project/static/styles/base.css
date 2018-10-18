@@ -34,13 +34,13 @@ header h1 {
     line-height: 130px;
     float:left;
     margin: 0px;
-    margin-left: 120px;
+    margin-left: 80px;
     font-size:60px;
     font-weight: 100;
     color: rgb(212, 209, 197);
 }
 
-li {display:none}
+/* li {display:none} */
 
 nav {
     opacity: 1;
@@ -89,4 +89,52 @@ nav li:hover a {
 
 button {
     cursor: pointer;
+}
+
+.sub-nav {
+    margin-left: 6em;
+}
+
+.sub-nav ul {
+    height: 120px;
+    margin: 0px;
+    vertical-align: middle;
+    list-style-type: none;
+}
+
+.sub-nav li {
+    background-color: rgb(191,187,172, 0.8);
+    display: inline;
+    margin-right: 20px;
+    box-sizing: border-box;
+    border: rgb(63,66,63) 1px solid;
+    padding: 10px 25px;
+    cursor: pointer;
+    box-shadow: 1px 2px rgb(63,66,63, 0.4);
+    border-radius: 2px;
+}
+
+.sub-nav li:hover {
+    background-color:rgb(132,129,110, 0.8)
+}
+
+.sub-nav a {
+    text-decoration: none;
+    color: rgb(63,66,63);
+    font-weight: 200;
+    font-size: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.sub-nav li:hover a {
+    color: rgb(191,187,172);
+    font-weight: 200;
+}
+
+
+.heading {
+    margin-top: 0;
+    margin-left: 8em;
+    text-decoration: underline;
 }
