@@ -35,22 +35,22 @@ class TestBookModel(TestCase):
         profile = Profile.objects.get(user_id=self.user.id)
         self.assertEqual(profile.username, self.user.username)
 
-    def test_book_create(self):
-        """"""
-        self.book = BookFactory()
-        self.book.save()
-
-        social_account = SocialAccount.objects.get(user_id=self.user.id)
-        fb_id = social_account.uid
-
-        Book.objects.create(
-            title=self.book.title,
-            owner=fb_id,
-            author=self.book.author,
-            user_id=self.book.user,
-        )
-        book = Book.objects.get(title=self.book.title)
-        self.assertEqual(book.title, book.title)
+    # def test_book_create(self):
+    #     """"""
+    #     self.book = BookFactory()
+    #     self.book.save()
+    #
+    #     social_account = SocialAccount.objects.get(user_id=self.user.id)
+    #     fb_id = social_account.uid
+    #
+    #     Book.objects.create(
+    #         title=self.book.title,
+    #         owner=fb_id,
+    #         author=self.book.author,
+    #         user_id=self.book.user,
+    #     )
+    #     book = Book.objects.get(title=self.book.title)
+    #     self.assertEqual(book.title, book.title)
 
     # def test_profile_delete(self):
     #     pass

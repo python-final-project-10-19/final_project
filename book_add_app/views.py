@@ -71,8 +71,7 @@ def book_add_scan(request):
     return render(request, 'add/book_add_scan.html')
 
 
-def book_post_view(request):
-
+def book_post_view(request): 
     if request.method == "POST":
         # import pdb; pdb.set_trace()
         # TODO: Add this book to book model for that user.
