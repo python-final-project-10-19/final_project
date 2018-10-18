@@ -17,6 +17,20 @@ class UserFactory(factory.django.DjangoModelFactory):
     first_name = 'Olivia'
     last_name = 'Dingleberg'
 
+
+class BookFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = Book
+
+    title = 'Home',
+    author = 'Marilynne Robinson',
+    # user = factory.SubFactory(UserFactory)
+
+
+
+
+
 # class SocialAccountFactory(factory.django.DjangoModelFactory):
 #     class Meta:
 #         model = SocialAccount

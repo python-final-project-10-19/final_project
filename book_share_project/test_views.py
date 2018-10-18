@@ -22,8 +22,6 @@ class TestBaseViews(TestCase):
                 )
         self.c = Client()
 
-
-
     def test_home_page_without_login(self):
         """If not logged in, user should see login button.
         """
@@ -43,7 +41,7 @@ class TestBaseViews(TestCase):
     def test_collections_page_without_login(self):
         """If not logged in, should redirect to home page
         """
-        res = self.c.get('/books', follow=True)
+        res = self.c.get('/collections', follow=True)
         self.assertEqual(res.status_code, 200)
         self.assertIn(b'Login', res.content)
 
@@ -52,14 +50,14 @@ class TestBaseViews(TestCase):
         """
         self.c.force_login(self.user)
         res = self.c.get('')
-        res = self.c.get('/books', follow=True)
+        res = self.c.get('/collections', follow=True)
         self.assertEqual(res.status_code, 200)
         self.assertIn(b'Collections', res.content)
 
     def test_add_books_page_without_login(self):
         """If not logged in, should redirect to home page
         """
-        res = self.c.get('/books/add', follow=True)
+        res = self.c.get('/add', follow=True)
         self.assertEqual(res.status_code, 200)
         self.assertIn(b'Login', res.content)
 
@@ -67,7 +65,7 @@ class TestBaseViews(TestCase):
         """
         """
         self.c.force_login(self.user)
-        res = self.c.post('/books/add/', data={'query': 'Lord of the rings'}, follow=True)
+        res = self.c.post('/add/search/', data={'query': 'Lord of the rings'}, follow=True)
         self.assertEqual(res.status_code, 200)
         self.assertIn(b'Lord', res.content)
 
