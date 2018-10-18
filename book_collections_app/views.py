@@ -34,8 +34,11 @@ def friends_view(request):
     headers = {'Authorization': 'Bearer {}'.format(os.environ.get('FB_GRAPH_TOKEN'))}
     response = requests.get(endpoint, headers=headers).json()
     # import pdb; pdb.set_trace()
+    try:
+        friends_data = response['friends']['data']
+    except KeyError:
+        friends_data = []
 
-    friends_data = response['friends']['data']
     friends = []
     for friend in friends_data:
         friends.append(friend['id'])
