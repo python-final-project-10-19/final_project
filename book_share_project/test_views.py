@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from .factories import UserFactory
 from allauth.socialaccount.models import SocialAccount
 import datetime
+from book_add_app.smart_scan import smart_scan
 
 
 class TestBaseViews(TestCase):
@@ -94,6 +95,16 @@ class TestBaseViews(TestCase):
         res = self.c.get('/collections/personal/', follow=True)
         self.assertEqual(res.status_code, 200)
         self.assertIn(b'Your Books', res.content)
+
+    def test_scan_works(self):
+        """If logged in, user should see logout button. """
+        self.c.force_login(self.user)
+        res = self.c.get('')
+        res = self.c.get('/collections/personal/', follow=True)
+        img_file = '../image_files/IMG_2053.jpg'
+        actual = smart_scan(img_file)
+
+        self.assertIsInstance(actual, list)
 
 
 

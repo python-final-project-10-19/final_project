@@ -13,4 +13,5 @@ omit =
     */book_share_project/admin.py
     */book_share_project/migrations/*
     */book_share_project/models.py
+    */book_share_project/views.py
     */book_collections_app/admin.py
