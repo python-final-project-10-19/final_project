@@ -1,0 +1,21 @@
+label {
+    display: block;
+    font-weight: 200;
+}
+
+.helptext {
+    display: none;
+}
+
+ul {
+    /* list-style-type: none; */
+    margin: 0;
+}
+
+/*input[type=submit] {*/
+    /*cursor: pointer;*/
+    /*padding: 5px 30px;*/
+/*}*/
+
+
+
