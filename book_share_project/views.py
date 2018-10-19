@@ -67,7 +67,7 @@ def notifications_view(request):
 
     if not profile:
 
-            endpoint = 'https://graph.facebook.com/{}?fields=picture'.format(uid)
+            endpoint = 'https://graph.facebook.com/{}?fields=picture'.format(fb_id)
             headers = {'Authorization': 'Bearer {}'.format(os.environ.get('FB_GRAPH_TOKEN'))}
             response = requests.get(endpoint, headers=headers).json()
             picture = response['picture']['data']['url']
@@ -78,7 +78,7 @@ def notifications_view(request):
                 email=request.user.email,
                 first_name=request.user.first_name,
                 last_name=request.user.last_name,
-                fb_id=uid,
+                fb_id=fb_id,
                 picture=picture,
             )
 
