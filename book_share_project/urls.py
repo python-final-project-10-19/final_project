@@ -28,3 +28,5 @@ urlpatterns = [
     path('notifications/', notifications_view, name="notifications"),
     path('add/', include('book_add_app.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+#here's a comment
