@@ -7,6 +7,9 @@ from django.core.validators import MaxValueValidator
 
 
 class Profile(models.Model):
+    """
+        Visited user information gets saved onto profile class.
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profiles')
     username = models.CharField(max_length=48, null=True)
     email = models.CharField(max_length=48, null=True)
@@ -24,6 +27,9 @@ class Profile(models.Model):
 
 
 class Book(models.Model):
+    """
+        Book class saved when registered user adds a new book to their collection.
+    """
     STATES = [
         ('available', 'Available'),
         ('checked out', 'Checked Out'),
@@ -52,6 +58,10 @@ class Book(models.Model):
 
 @receiver(models.signals.post_save, sender=Book)
 def set_book_borrowed_date(sender, instance, **kwargs):
+    """
+        Triggers when a book gets checked out to a user.
+        Updates the status of Book objects.
+    """
     if instance.status == 'checked out' and instance.pre_save_status == 'available':
         instance.last_borrowed = timezone.now()
         instance.pre_save_status = 'checked out'
@@ -60,6 +70,9 @@ def set_book_borrowed_date(sender, instance, **kwargs):
 
 @receiver(models.signals.pre_save, sender=Book)
 def set_pre_save_status(sender, instance, **kwargs):
+    """
+        Sets the initial status of Book object once gets instantiates.
+    """
     if instance.status == 'available':
         instance.pre_save_status = 'available'
 
@@ -69,6 +82,10 @@ class Document(models.Model):
 
 
 class Notifications(models.Model):
+    """
+        Class that holds all activities occurs within the application.
+        Used to keep all actions of users in the application.
+    """
     TYPES = [
         ('request', 'Request'),
         ('response', 'Response'),

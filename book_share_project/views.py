@@ -8,6 +8,11 @@ import os
 
 
 def home_view(request):
+    """
+        Home page view,
+        if user is logged-in, validates if current user is saved.
+        If current user is a new user, saves into our database(Profile model)
+    """
     if request.user.is_authenticated:
 
         profile = Profile.objects.filter(user__id=request.user.id)
@@ -38,6 +43,9 @@ def home_view(request):
 
 
 def logout_view(request):
+    """
+        Logout page redirecting to home
+    """
     if not request.user.is_authenticated:
         return redirect('home')
 
@@ -45,6 +53,11 @@ def logout_view(request):
 
 
 def notifications_view(request):
+    """
+        Grabs all notifications that are related to current user and order by date.
+        With each retreived notification, filter and validate it and saves it into another object instance,
+        append validated object into a list and returns in a JSON format.
+    """
     if not request.user.is_authenticated:
         return redirect('home')
 
@@ -68,7 +81,6 @@ def notifications_view(request):
             book.update(status='available')
 
         return redirect('/notifications')
-
 
     notifications = Notifications.objects.filter(Q(from_user=fb_id) | Q(to_user=fb_id)).order_by('-date_added')
 
