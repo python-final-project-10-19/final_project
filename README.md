@@ -1,9 +1,8 @@
 # Book Share Pro
 
-[Trello Project Management Board](https://trello.com/b/NCEfqRZA/book-dating-app-project)
-
 ## Application Summary
-TBD
+- Book Share Pro is a facebook integrated web community where users can post their personally owned books. When books are posted, users facebook friends and view and request to borrow the book through Book Share Pro application. 
+- Every users are required to login using Facebook credentials, and can only view and interact with their facebook friends within the application.
 
 ## Quick Start
 1. Clone this repository.
@@ -36,6 +35,12 @@ TBD
 
 ## Deployment
 Application is deployed with Heroku. [Click here](https://quiet-brook-16740.herokuapp.com/) to view our deployed site.
+
+## Resources
+- [Trello Project Management Board](https://trello.com/b/NCEfqRZA/book-dating-app-project)
+- [Facebook for Developers](https://developers.facebook.com)
+- [Heroku](https://www.heroku.com/)
+- [Google API](https://developers.google.com/books/)
 
 ### Authors:
 - Andrew Baik
