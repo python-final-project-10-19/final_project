@@ -100,7 +100,7 @@ def book_add_scan(request):
             result = google_books(book, 1)
             if len(result):
                 results.append(result[0])
-
+        results = list(reversed(results))
 
     # Render list page with the documents and the form
     return render(request, 'add/book_add_scan.html', {'documents': documents, 'form': form, 'results': enumerate(results)})
