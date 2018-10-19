@@ -6,6 +6,14 @@ if __name__ == '__main__':
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'book_share_project.settings')
     try:
         from django.core.management import execute_from_command_line
+        is_testing = 'test' in sys.argv
+
+        if is_testing:
+            import coverage
+            cov = coverage.coverage(source=['book_share_project'])
+            cov.erase()
+            cov.start()
+
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
@@ -13,3 +21,8 @@ if __name__ == '__main__':
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
+
+    if is_testing:
+        cov.stop()
+        cov.save()
+        cov.report()

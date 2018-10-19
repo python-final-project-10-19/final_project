@@ -9,15 +9,13 @@ label {
 
 ul {
     /* list-style-type: none; */
-    margin: 0px;
+    margin: 0;
 }
 
-input[type=submit] {
-    cursor: pointer;
-    padding: 5px 10px;
-}
+/*input[type=submit] {*/
+    /*cursor: pointer;*/
+    /*padding: 5px 30px;*/
+/*}*/
 
-input[type=submit]:hover {
 
-}
 

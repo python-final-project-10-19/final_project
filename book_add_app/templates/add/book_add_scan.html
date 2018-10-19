@@ -1,20 +1,7 @@
 {% extends "add/book_add_base.html" %}
 
-
 {% block add_content %}
   <h1>Smart Scan Coming Soon!</h1>
-  <!-- List of uploaded documents -->
-  {% if documents %}
-    <ul>
-    {% for document in documents %}
-      <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}
-        <img src="{{ document.docfile.url }}" alt="{{ document.docfile.name }}">
-      </a></li>
-    {% endfor %}
-    </ul>
-  {% else %}
-    <p>No documents.</p>
-  {% endif %}
 
   <!-- Upload form. Note enctype attribute! -->
   <form action="{% url "book_scan" %}" method="post" enctype="multipart/form-data">
@@ -28,4 +15,24 @@
     <p><input type="submit" value="Upload" /></p>
   </form>
 
+{#  <div class="collection_page">#}
+
+  <!-- List of uploaded documents -->
+  {% if documents %}
+    <ul>
+    <div class ="image_box">
+      {% for document in documents %}
+        <li>
+  {#        <a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a>#}
+          <img  src="{{ document.docfile.url }}" alt="{{ document.docfile.name }}">
+      </li>
+      {% endfor %}
+    </div>
+    </ul>
+  {% else %}
+    <p>No documents.</p>
+  {% endif %}
+
+
+{#  </div>#}
 {% endblock %}

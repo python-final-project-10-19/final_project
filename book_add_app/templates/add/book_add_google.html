@@ -3,11 +3,11 @@
 {% block add_content %}
 
 <div class="book_search_add">
-{#  <h1>Search for a book</h1>#}
+  <h1>Search for a book</h1>
   <form action="/add/search/" method="POST">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Submit" placeholder='e.g., Harry Potter, J.K. Rowlings'/>
+    <input type="submit" value="Submit"/>
   </form>
  </div>
 
@@ -17,8 +17,8 @@
         <div class="book_info_container">
           <img src="{{ result.image_url }}"/>
         </div>
-        <p>{{ result.title }}</p>
-        <p>{{ result.author }}</p>
+        <p>{{ result.title | title  }}</p>
+        <p>By: {{ result.author }}</p>
 
       <input type="button" id="add-button-{{ i }}" value="Add to your collection" onclick="add_to_collection({{result}}, {{ i }})" />
     </div>
