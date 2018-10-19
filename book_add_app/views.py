@@ -68,6 +68,7 @@ def book_post_view(request):
             owner=fb_id,
             title=request.POST.get('title'),
             author=request.POST.get('author'),
+            image_url=request.POST.get('image_url'),
         )
 
     return redirect('/add/search')

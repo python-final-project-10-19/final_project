@@ -43,6 +43,7 @@ class Book(models.Model):
     requester = models.CharField(max_length=48, blank=True, null=True)
     title = models.CharField(max_length=48)
     author = models.CharField(max_length=4096)
+    image_url = models.URLField(max_length=1024, null=True)
     year = models.CharField(max_length=48, blank=True, null=True)
     status = models.CharField(choices=STATES, default='available', max_length=48)
     date_added = models.DateTimeField(auto_now=True, blank=True)
@@ -78,7 +79,7 @@ def set_pre_save_status(sender, instance, **kwargs):
 
 
 class Document(models.Model):
-    docfile = models.FileField(upload_to='documents/%Y/%m/%d')
+    docfile = models.FileField(upload_to='documents')
 
 
 class Notifications(models.Model):
