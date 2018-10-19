@@ -7,6 +7,8 @@ from book_share_project.models import Book, Profile, Document
 import requests
 import os
 from book_add_app.forms import AddBookForm, DocumentForm
+from .smart_scan import smart_scan
+from .google_books import google_books
 
 
 
@@ -37,39 +39,9 @@ def book_add_search(request):
         form = AddBookForm()
         input_value = request.POST.get('query')
         print('here is out input_value', input_value)
-        response = requests.get('https://www.googleapis.com/books/v1/volumes?q={}&maxResults=4'.format(input_value)).json()
-        results_list = response['items']
 
-        for result in results_list:
-            try:
-                title = result['volumeInfo']['title']
-            except:
-                title = ''
-            try:
-                author = result['volumeInfo']['authors'][0]
-            except:
-                author = ''
-            try:
-                description = result['volumeInfo']['description']
-            except:
-                description = ''
-            try:
-                categories = result['volumeInfo']['categories']
-            except:
-                categories = ''
-            try:
-                image_url = result['volumeInfo']['imageLinks']['thumbnail']
-            except:
-                image_url = ''
-
-            context['results'].append({
-                'title': title,
-                'author': author,
-                'description': description,
-                'categories': categories,
-                'image_url': image_url,
-                # 'purchase_link': result['saleInfo']['buyLink'],
-                })
+        results = google_books(input_value, 4)
+        context['results'] = results
 
     else:
         form = AddBookForm()
@@ -96,6 +68,7 @@ def book_post_view(request):
             owner=fb_id,
             title=request.POST.get('title'),
             author=request.POST.get('author'),
+            image_url=request.POST.get('image_url'),
         )
 
     return redirect('/add/search')
@@ -120,9 +93,18 @@ def book_add_scan(request):
 
     # Load documents for the list page
     documents = Document.objects.all()
+    results = []
+    if len(documents):
+        path = documents[0].docfile.url
+        books = smart_scan(path)
+        for book in books:
+            result = google_books(book, 1)
+            if len(result):
+                results.append(result[0])
+        results = list(reversed(results))
 
     # Render list page with the documents and the form
-    return render(request, 'add/book_add_scan.html', {'documents': documents, 'form': form})
+    return render(request, 'add/book_add_scan.html', {'documents': documents, 'form': form, 'results': enumerate(results)})
 
     # return render(request, 'add/book_add_scan.html')
 

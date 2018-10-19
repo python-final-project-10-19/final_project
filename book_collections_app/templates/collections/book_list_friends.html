@@ -6,7 +6,7 @@
   <div class="collection_page">
     {% for i, book in books %}
       <div class="book_item">
-
+      <img src="{{ book.image_url }}"/>
       <h2>{{ book.title }}</h2>
       <p>By: {{ book.author }}</p>
       <p>Owned by: {{ book.owner }}</p>

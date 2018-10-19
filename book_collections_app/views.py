@@ -37,6 +37,7 @@ def personal_view(request):
                 book_obj = {
                     'title': book['title'],
                     'author': book['author'],
+                    'image_url': book['image_url'],
                    }
                 all_books.append(book_obj)
 
