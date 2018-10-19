@@ -1,0 +1,204 @@
+body {
+    position: static;
+    background-color: white;
+    font-family: 'Raleway', sans-serif;
+    color: rgb(63,66,63);
+    height: 100vh;
+    background-image: url('../img/sharon-mccutcheon-532782-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+main {
+    text-align: center;
+}
+
+header {
+    background-color: rgba(93,80,67,0.9);
+    width:100%;
+    height: 130px;
+    border-bottom: rgb(63,66,63) 1.5px solid;
+    box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
+}
+
+header h1 {
+    height: 130px;
+    line-height: 130px;
+    float:left;
+    margin: 0px;
+    margin-left: 80px;
+    font-size:60px;
+    font-weight: 100;
+    color: rgb(212, 209, 197);
+}
+
+
+nav {
+    opacity: 1;
+    height: 130px;
+    line-height: 130px;
+    float: right;
+}
+
+nav ul {
+    height: 120px;
+    margin: 0px 20px 0px 0px;
+    vertical-align: middle;
+    list-style-type: none;
+}
+
+nav li {
+    background-color: rgba(191,187,172,0.8);
+    display: inline;
+    margin-right: 20px;
+    box-sizing: border-box;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+
+nav li:hover {
+    background-color: rgba(232, 242, 187, 0.8);
+    transition: 400ms;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(63,66,63);
+    font-size: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+/*a:hover {*/
+    /*text-decoration: none;*/
+    /*color: rgb(63,66,63);*/
+    /*font-size: 20px;*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+/*}*/
+
+nav li a:hover {
+  color: rgb(191,187,172);
+  transition: 400ms;
+}
+
+button {
+    cursor: pointer;
+}
+
+.welcome_back{
+  font-size: 40px;
+}
+
+/*.sub-nav {*/
+    /*height: 15vh;*/
+/*}*/
+
+/*.sub-nav ul {*/
+    /*height: 120px;*/
+    /*margin: 0px;*/
+    /*vertical-align: middle;*/
+    /*list-style-type: none;*/
+/*}*/
+
+/*.sub-nav li {*/
+    /*background-color: rgba(191,187,172, 0.8);*/
+    /*display: inline;*/
+    /*margin-right: 20px;*/
+    /*box-sizing: border-box;*/
+    /*padding: 10px 25px;*/
+    /*cursor: pointer;*/
+/*}*/
+
+/*.sub-nav li:hover {*/
+    /*background-color:rgba(132,129,110,0.8);*/
+    /*transition: 400ms;*/
+/*}*/
+
+/*.sub-nav a {*/
+    /*text-decoration: none;*/
+    /*color: rgb(63,66,63);*/
+    /*font-weight: 200;*/
+    /*font-size: 20px;*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+/*}*/
+
+/*.sub-nav li:hover a {*/
+    /*color: rgb(191,187,172);*/
+    /*font-weight: 200;*/
+    /*margin: 3em;*/
+/*}*/
+
+
+/*.heading {*/
+    /*margin-top: 0;*/
+    /*margin-left: 8em;*/
+    /*text-decoration: underline;*/
+/*}*/
+
+/*!*Book add section*!*/
+/*.book_search_add{*/
+  /*padding: 10px;*/
+/*}*/
+
+/*.book_sub_nav{*/
+  /*background-color: rgba(86, 105, 123, 0.2);*/
+  /*padding: 10px;*/
+/*}*/
+
+/*.book_search_add input{*/
+  /*line-height: 3em;*/
+  /*font-size: 14px;*/
+  /*padding: 0 30px;*/
+/*}*/
+
+/*.book_search_add input:hover{*/
+  /*background-color: rgba(190, 195, 146, 0.9);*/
+  /*transition: 400ms;*/
+/*}*/
+
+/*.book_google_results{*/
+  /*display: inline-flex;*/
+/*}*/
+
+/*.sub-nav .heading{*/
+  /*font-size: 3em;*/
+  /*margin: 1em;*/
+/*}*/
+
+/*.book_info{*/
+  /*padding: 30px;*/
+  /*margin: 1em;*/
+  /*background-color: rgba(132,129,110,0.5);*/
+/*}*/
+
+/*.book_info p{*/
+  /*color: black;*/
+  /*font-size: 16px;*/
+/*}*/
+
+/*.book_info button, [type="button"]{*/
+  /*background-color: rgba(132,129,110,0.9);*/
+  /*font-size: 14px;*/
+  /*line-height: 2em;*/
+  /*display: table-footer-group;*/
+/*}*/
+
+/*.book_info_container{*/
+  /*height: 20em;*/
+/*}*/
+
+/*.book_info span{*/
+  /*display: table;*/
+  /*font-size: 12px;*/
+  /*padding: 10px;*/
+  /*color: white;*/
+  /*background-color: rgba(20, 153, 45, 0.7);*/
+
+/*}*/
+
+
+
+

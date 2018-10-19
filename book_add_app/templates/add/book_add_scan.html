@@ -1,6 +1,7 @@
 {% extends "add/book_add_base.html" %}
 
 {% block add_content %}
+  <div class="book_spine">
   <h1>Spine Extractor</h1>
 
   <!-- Upload form. Note enctype attribute! -->
@@ -29,6 +30,7 @@
       {% endfor %}
     </div>
     </ul>
+    </div>
     <div class="book_google_results">
       {% for i, result in results %}
         <div class="book_info">

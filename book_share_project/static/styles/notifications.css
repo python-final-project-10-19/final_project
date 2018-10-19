@@ -1,0 +1,23 @@
+.notifications_box{
+  padding: 1em 3em;
+  font-size: 14px;
+  /*border: black 1px solid;*/
+  background-color: rgba(132,129,110,0.2);
+  width: 30%;
+  margin: 2%;
+}
+
+.notifications_box img{
+  float: left;
+  padding: 10px;
+  /*border: black 1px solid;*/
+
+}
+
+[type="button"]{
+  /*display: inline-block;*/
+  margin: 1em;
+}
+
+
+

@@ -2,6 +2,7 @@
     background-color: rgba(191,187,172,0.6);
     padding: 5px 10px;
     margin-bottom: 20px;
+    font-size: 16px;
 }
 
 .book_item:hover {
@@ -11,8 +12,8 @@
 }
 
 .book_item h3 {
-    font-weight: 400;
-    margin: 3px;
+  font-weight: 400;
+  padding-left: 2em;
 }
 
 .book_item h4 {
@@ -22,7 +23,7 @@
 
 .welcome_back {
     display: inline-block;
-    margin: 0;
+    margin-left: 2em;
 }
 
 .book_detail > li {
@@ -33,6 +34,18 @@
 .collection_page{
   display: inline-grid;
   width: 40%;
+  padding-left: 4em;
 }
+
+.book_item img{
+  float: left;
+  margin-right: 3em;
+}
+
+.book_list h1{
+  margin-left: 3em;
+}
+
+
 
 
