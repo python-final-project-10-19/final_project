@@ -1,25 +1,25 @@
 {% extends "collections/book_list_base.html" %}
 
 {% block list_content %}
-<h1>Your Friends' Books</h1>
-  {% for i, book in books %}
-    <div class="book_item">
+  <h1>Your Friends' Books</h1>
+  <div class="collection_page">
+    {% for i, book in books %}
+      <div class="book_item">
 
-    <h3>{{book.title}}</h3>
-    <h4>By: {{book.author}}</h4>
-    <h4>Owned by: {{book.owner}}</h4>
+      <h2>{{ book.title }}</h2>
+      <p>By: {{ book.author }}</p>
+      <p>Owned by: {{ book.owner }}</p>
 
-    {% if book.status == 'available' %}
-      <input type="button" id="request-button-{{ i }}" value="Request book" onclick="request_book({{book.id}}, {{  fb_id }}, {{ i }})"/>
-    {% elif book.status == 'checked out' %}
-      <p>Not available</p>
-    {% elif book.status == 'requested' and book.requester == fb_id  %}
-      <p>You already requested</p>
-    {% endif %}
-
-    </div>
-
-  {% endfor %}
+      {% if book.status == 'available' %}
+        <input type="button" id="request-button-{{ i }}" value="Request book" onclick="request_book({{book.id}}, {{  fb_id }}, {{ i }})"/>
+      {% elif book.status == 'checked out' %}
+        <p>Not available</p>
+      {% elif book.status == 'requested' and book.requester == fb_id  %}
+        <p>You already requested</p>
+      {% endif %}
+      </div>
+      {% endfor %}
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery/jquery-3.3.1.min.js"></script>
   <script>
