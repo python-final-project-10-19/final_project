@@ -1,11 +1,11 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-
+ <div class="book_sub_nav">
 {% if user.is_authenticated %}
-      <h3 class="welcome_back">Here is a list of notifications</h3>
-
+  <h3 class="welcome_back">Here is a list of notifications</h3>
 {% endif %}
+ </div>
 
 {% if not user.is_authenticated %}
 <h1>Welcome! Please login with Facebook.</h1>

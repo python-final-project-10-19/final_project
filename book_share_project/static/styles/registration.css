@@ -9,7 +9,7 @@ label {
 
 ul {
     /* list-style-type: none; */
-    margin: 0px;
+    margin: 0;
 }
 
 /*input[type=submit] {*/
@@ -17,7 +17,5 @@ ul {
     /*padding: 5px 30px;*/
 /*}*/
 
-input[type=submit]:hover {
 
-}
 

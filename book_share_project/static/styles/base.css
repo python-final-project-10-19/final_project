@@ -57,7 +57,7 @@ nav li {
     cursor: pointer;
 }
 
-nav li a:hover {
+nav li:hover {
     background-color: rgba(232, 242, 187, 0.8);
     transition: 400ms;
 }
@@ -70,13 +70,13 @@ a {
     width: 100%;
 }
 
-a:hover {
-    text-decoration: none;
-    color: rgb(63,66,63);
-    font-size: 20px;
-    height: 100%;
-    width: 100%;
-}
+/*a:hover {*/
+    /*text-decoration: none;*/
+    /*color: rgb(63,66,63);*/
+    /*font-size: 20px;*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+/*}*/
 
 nav li a:hover {
   color: rgb(191,187,172);
@@ -87,9 +87,9 @@ button {
     cursor: pointer;
 }
 
-/*.welcome_back{*/
-  /*font-size: 40px;*/
-/*}*/
+.welcome_back{
+  font-size: 40px;
+}
 
 /*.sub-nav {*/
     /*height: 15vh;*/
