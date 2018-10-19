@@ -100,6 +100,7 @@ def friends_view(request):
                     'title': book['title'],
                     'author': book['author'],
                     'owner': friend_name,
+                    'owner_fb_id': friend,
                     'status': book['status'],
                     'requester': book['requester']
                     }
