@@ -21,6 +21,8 @@ dj-database-url = "*"
 gunicorn = "*"
 whitenoise = "*"
 django-heroku = "*"
+google-cloud = "*"
+google = "*"
 
 [dev-packages]
 factory-boy = "*"

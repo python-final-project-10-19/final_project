@@ -1,0 +1,11 @@
+.image_box img{
+    height: 100vh;
+    display: inline-block;
+
+}
+
+[type="file"]{
+  /*padding: 30px;*/
+  /*margin: 1em;*/
+  /*background-color: rgba(132,129,110,0.5);*/
+}
