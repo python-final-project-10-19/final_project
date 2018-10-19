@@ -27,15 +27,17 @@ class Book(models.Model):
     STATES = [
         ('available', 'Available'),
         ('checked out', 'Checked Out'),
+        ('requested', 'Requested'),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
     # profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='books')
     owner = models.CharField(max_length=48, null=True)
-    borrower = models.CharField(max_length=48, null=True)
+    borrower = models.CharField(max_length=48, blank=True)
+    requester = models.CharField(max_length=48, blank=True)
     title = models.CharField(max_length=48)
     author = models.CharField(max_length=4096)
-    year = models.CharField(max_length=48)
+    year = models.CharField(max_length=48, blank=True)
     status = models.CharField(choices=STATES, default='available', max_length=48)
     date_added = models.DateTimeField(auto_now_add=True, blank=True)
     last_borrowed = models.DateTimeField(blank=True, null=True)
@@ -64,3 +66,17 @@ def set_pre_save_status(sender, instance, **kwargs):
 
 class Document(models.Model):
     docfile = models.FileField(upload_to='documents/%Y/%m/%d')
+
+
+class Notifications(models.Model):
+    TYPES = [
+        ('request', 'Request'),
+        ('response', 'Response'),
+    ]
+
+    type = models.CharField(choices=TYPES, max_length=48)
+    status = models.CharField(max_length=48, null=True)
+    from_user = models.CharField(max_length=48, null=True)
+    to_user = models.CharField(max_length=48, null=True)
+    date_added = models.DateTimeField(auto_now_add=True, blank=True)
+    book_id = models.CharField(max_length=48, null=True)

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import home_view, logout_view
+from .views import home_view, logout_view, notifications_view
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -25,5 +25,6 @@ urlpatterns = [
     path('accounts/logout', logout_view, name='logout'),
     path('', home_view, name='home'),
     path('collections/', include('book_collections_app.urls')),
+    path('notifications/', notifications_view, name="notifications"),
     path('add/', include('book_add_app.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -70,8 +70,8 @@ def book_add_search(request):
     return render(request, 'add/book_add_google.html', {'form': form, 'results': enumerate(context['results'])})
 
 
-def book_post_view(request):
 
+def book_post_view(request):
     if request.method == "POST":
         # import pdb; pdb.set_trace()
         # TODO: Add this book to book model for that user.
@@ -83,8 +83,8 @@ def book_post_view(request):
         Book.objects.create(
             user=request.user,
             owner=fb_id,
-            title=request.POST['title'],
-            author=request.POST['author'],
+            title=request.POST.get('title'),
+            author=request.POST.get('author'),
         )
 
     return redirect('/add/search')

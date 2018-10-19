@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+{% if not user.is_authenticated %}
+<h1>Welcome! Please login with Facebook.</h1>
+{% endif %}
+
+{% if user.is_authenticated %}
+  <h3 class="welcome_back">Here is a list of notifications</h3>
+  {% for i, notification in notifications %}
+
+    {% if notification.type == 'request' and notification. %}
+      <img src="{{notification.from_picture}}" alt="requester pic">
+      <p>{{notification.name_from}} requested to borrow {{notification.book_title}}</p>
+      <input type="button" id="request-button-{{ i }}" value="Accept" onclick="handle_notification_response(notification, 'accepted', {{ i }})"/>
+      <input type="button" id="request-button-{{ i }}" value="Decline" onclick="handle_notification_response(notification, 'declined', {{ i }})"/>
+
+    {% elif notification.type == 'response' %}
+      <img src="{{notification.from_picture}}" alt="responder pic">
+      <p>{{notification.name_from}} accepted your request to borrow {{notification.book_title}}!</p>
+      <input type="button" id="request-button-{{ i }}" value="Send a message"/>
+    {% endif %}
+  {% endfor %}
+
+{% endif %}
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }} /static/jquery/jquery-3.3.1.min.js"></script>
+<script>
+  var csrftoken = Cookies.get('csrftoken');
+
+function csrfSafeMethod(method) {
+  // these HTTP methods do not require CSRF protection
+  return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+    function handle_notification_response(notification, response, index){
+      $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+      context = {'notification': notification, 'response': response}
+
+      $.ajax({
+        type: "POST",
+        url: '/notifications/',
+        data: context,
+        success: $(`#request-button-${index}`).after( "<span>Response sent</span>" ),
+        });
+    }
+  </script>
+
+
+{% endblock %}

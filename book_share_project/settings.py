@@ -81,9 +81,11 @@ TEMPLATES = [
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
+# Test settings
 NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=book_share_project, book_add_app, book_collections_app',
+
 ]
 
 WSGI_APPLICATION = 'book_share_project.wsgi.application'
@@ -147,11 +149,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-SITE_ID = os.environ.get('SITE_ID', 1)
+SITE_ID = os.environ.get('SITE_ID', 4)
+
 
 
 AUTHENTICATION_BACKENDS = (
@@ -164,6 +168,6 @@ AUTHENTICATION_BACKENDS = (
 
 )
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/notifications'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
