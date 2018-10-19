@@ -13,7 +13,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=48, null=True)
     last_name = models.CharField(max_length=48, null=True)
     fb_id = models.CharField(max_length=48, null=True)
-    picture = models.URLField(max_length=300)
+    picture = models.URLField(max_length=1024)
     friends = ArrayField(models.CharField(max_length=48), null=True)
 
     def __str__(self):
