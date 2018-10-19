@@ -35,7 +35,7 @@ TBD
 TBD
 
 ## Deployment
-Application is deployed with Heroku. [Click here](https://quiet-brook-16740.herokuapp.com/) view our deployed site.
+Application is deployed with Heroku. [Click here](https://quiet-brook-16740.herokuapp.com/) to view our deployed site.
 
 ### Authors:
 - Andrew Baik
@@ -45,5 +45,5 @@ Application is deployed with Heroku. [Click here](https://quiet-brook-16740.hero
 
 </br>
 </br>
-Verion 0.0.0
+Verion 1.0.0
 </br>
