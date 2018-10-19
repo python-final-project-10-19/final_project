@@ -1,0 +1,15 @@
+[run]
+branch = True
+omit =
+    */django/utils/autoreload.py
+source = django
+
+[report]
+ignore_errors = True
+omit =
+    */django/conf/locale/*
+    */tests/*
+    */book_share_project/settings.py
+    */book_share_project/admin.py
+    */book_share_project/migrations/*
+    */book_collections_app/admin.py 

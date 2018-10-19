@@ -16,11 +16,11 @@ class Profile(models.Model):
     picture = models.URLField(max_length=300)
     friends = ArrayField(models.CharField(max_length=48), null=True)
 
-    def __str__(self):
-        return 'Profile: {} ({})'.format(self.username, self.fb_id)
+    # def __str__(self):
+    #     return 'Profile: {} ({})'.format(self.username, self.fb_id)
 
-    def __repr__(self):
-        return 'Profile: {} ({})'.format(self.username, self.fb_id)
+    # def __repr__(self):
+    #     return 'Profile: {} ({})'.format(self.username, self.fb_id)
 
 
 class Book(models.Model):
@@ -43,11 +43,11 @@ class Book(models.Model):
     last_borrowed = models.DateTimeField(blank=True, null=True)
     pre_save_status = models.CharField(max_length=48, editable=False)
 
-    def __str__(self):
-        return 'Book: {} ({})'.format(self.title, self.status)
+    # def __str__(self):
+    #     return 'Book: {} ({})'.format(self.title, self.status)
 
-    def __repr__(self):
-        return 'Book: {} ({})'.format(self.title, self.status)
+    # def __repr__(self):
+    #     return 'Book: {} ({})'.format(self.title, self.status)
 
 
 @receiver(models.signals.post_save, sender=Book)
