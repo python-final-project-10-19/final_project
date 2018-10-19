@@ -1,7 +1,7 @@
 # Book Share Pro
 
 ## Application Summary
-- Book Share Pro is a facebook integrated web community where users can post their personally owned books. When books are posted, users facebook friends and view and request to borrow the book through Book Share Pro application. 
+- Book Share Pro is a facebook integrated web community where users can post their personally owned books. When books are posted, facebook friends can view and request to borrow the book through Book Share Pro application. 
 - Every users are required to login using Facebook credentials, and can only view and interact with their facebook friends within the application.
 
 ## Quick Start
