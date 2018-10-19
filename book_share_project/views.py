@@ -84,6 +84,8 @@ def notifications_view(request):
 
     notifications = Notifications.objects.filter(Q(from_user=fb_id) | Q(to_user=fb_id)).order_by('-date_added')
 
+    # import pdb; pdb.set_trace()
+
     all_notifications = []
 
     for notification in notifications:
@@ -105,6 +107,8 @@ def notifications_view(request):
 
         notification_object = {
             'fb_id': fb_id,
+            'from_user': from_user,
+            'to_user': to_user,
             'type': type,
             'book_id': book_id,
             'book_title': book_title,
@@ -121,5 +125,6 @@ def notifications_view(request):
     }
 
     # import pdb; pdb.set_trace()
+    print(all_notifications)
 
     return render(request, 'base/notifications.html', context)
