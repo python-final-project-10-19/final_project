@@ -1,7 +1,7 @@
 {% extends "add/book_add_base.html" %}
 
 {% block add_content %}
-  <h1>Smart Scan Coming Soon!</h1>
+  <h1>Spine Extractor</h1>
 
   <!-- Upload form. Note enctype attribute! -->
   <form action="{% url "book_scan" %}" method="post" enctype="multipart/form-data">
@@ -12,7 +12,7 @@
             {{ form.docfile.errors }}
             {{ form.docfile }}
     </p>
-    <p><input type="submit" value="Upload" /></p>
+    <p><input type="submit" value="Scan" /></p>
   </form>
 
 {#  <div class="collection_page">#}
@@ -29,6 +29,19 @@
       {% endfor %}
     </div>
     </ul>
+    <div class="book_google_results">
+      {% for i, result in results %}
+        <div class="book_info">
+            <div class="book_info_container">
+              <img src="{{ result.image_url }}"/>
+            </div>
+            <p>{{ result.title | title  }}</p>
+            <p>By: {{ result.author }}</p>
+
+          <input type="button" id="add-button-{{ i }}" value="Add to your collection" />
+        </div>
+      {% endfor %}
+    </div>
   {% else %}
     <p>No documents.</p>
   {% endif %}
