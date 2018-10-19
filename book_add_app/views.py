@@ -7,6 +7,7 @@ from book_share_project.models import Book, Profile, Document
 import requests
 import os
 from book_add_app.forms import AddBookForm, DocumentForm
+from .smart_scan import smart_scan
 
 
 
@@ -120,6 +121,10 @@ def book_add_scan(request):
 
     # Load documents for the list page
     documents = Document.objects.all()
+    if len(documents):
+        path = documents[0].docfile.url
+        books = smart_scan(path)
+
 
     # Render list page with the documents and the form
     return render(request, 'add/book_add_scan.html', {'documents': documents, 'form': form})
