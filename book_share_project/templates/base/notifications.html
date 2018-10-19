@@ -6,13 +6,16 @@
 {% if not user.is_authenticated %}
 <h1>Welcome! Please login with Facebook.</h1>
 {% endif %}
- <div class="book_sub_nav">
-{% if user.is_authenticated %}
-  <h3 class="welcome_back">Notification Feed</h3>
-  <br>
+
+  {% if user.is_authenticated %}
+    <div class="book_sub_nav">
+      <h3 class="welcome_back">Notification Feed</h3>
+      <br>
+   </div>
+    <div class="notifications_box">
   {% for i, notification in notifications %}
 
-      {% if notification.type == 'request' and notification.fb_id == notification.to_user %}
+      {% if notification.type == 'request' and notification.fb_id == notification.to_user %>
       <img src="{{notification.picture_from}}" alt="requester pic">
       <p>{{notification.name_from}} requested to borrow {{notification.book_title}}</p>
       <input type="button" id="request-button-{{ i }}-accept" value="Accept" onclick="handle_notification_response({{ notification }}, 'accepted', {{ i }})"/>
@@ -32,10 +35,10 @@
       <input type="button" id="request-button-{{ i }}" value="Send a message"/>
       {% endif %}
   {% endfor %}
-
+  </div>
 
 {% endif %}
-</div>
+
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery/jquery-3.3.1.min.js"></script>
 <script>
@@ -74,10 +77,7 @@ function csrfSafeMethod(method) {
           success: $(`#request-button-${index}-decline`).after( "<span>Response sent</span>" ),
           });
       }
-
-
     }
   </script>
-
 
 {% endblock %}
