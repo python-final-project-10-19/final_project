@@ -2,10 +2,11 @@
 
 {% block content %}
 
+
 {% if not user.is_authenticated %}
 <h1>Welcome! Please login with Facebook.</h1>
 {% endif %}
-
+ <div class="book_sub_nav">
 {% if user.is_authenticated %}
   <h3 class="welcome_back">Here is a list of notifications</h3>
   {% for i, notification in notifications %}
@@ -23,7 +24,9 @@
     {% endif %}
   {% endfor %}
 
+
 {% endif %}
+</div>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery/jquery-3.3.1.min.js"></script>
 <script>

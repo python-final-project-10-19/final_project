@@ -187,8 +187,11 @@
   button,
   [type="button"],
   [type="reset"],
-  [type="submit"] {
+  [type="submit"]{
     -webkit-appearance: button;
+    /*padding: 10px 30px;*/
+    /*margin: 1em;*/
+    /*background-color: rgba(132,129,110,0.5);*/
   }
 
   /**

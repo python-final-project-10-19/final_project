@@ -1,15 +1,16 @@
 {% extends "collections/book_list_base.html" %}
 
 {% block list_content %}
-<h1>Your Books</h1>
-  {% for book in books %}
-    
+
+  <h1>Your Books</h1>
+
+  <div class="collection_page">
+    {% for book in books %}
     <div class="book_item">
-    <h3>{{book.title}}</h3>
-    <h4>By: {{book.author}}</h4>
-
-
+      <h2>{{book.title}}</h2>
+      <h4>By: {{book.author}}</h4>
     </div>
-    </a>
-  {% endfor %}
+    {% endfor %}
+  </div>
+
 {% endblock %}
