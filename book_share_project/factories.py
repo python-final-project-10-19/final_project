@@ -27,9 +27,9 @@ class BookFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Book
 
-    title = 'Home',
-    author = 'Marilynne Robinson',
-    user = factory.SubFactory(UserFactory)
+    title = factory.Faker('sentence', nb_words=4)
+    author = factory.Faker('name')
+   
 
 
 # class SocialAccountFactory(factory.django.DjangoModelFactory):

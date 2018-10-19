@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -85,6 +86,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=book_share_project, book_add_app, book_collections_app',
+    '--cover-html'
 
 ]
 
@@ -171,3 +173,5 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/notifications'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+django_heroku.settings(locals())

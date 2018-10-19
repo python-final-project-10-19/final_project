@@ -17,6 +17,10 @@ django-jquery = "*"
 common = "*"
 django-nose = "*"
 coverage = "*"
+dj-database-url = "*"
+gunicorn = "*"
+whitenoise = "*"
+django-heroku = "*"
 
 [dev-packages]
 factory-boy = "*"

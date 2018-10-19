@@ -1,6 +1,7 @@
 {% extends "collections/book_list_base.html" %}
 
 {% block list_content %}
+
   <h1>Your Friends' Books</h1>
   <div class="collection_page">
     {% for i, book in books %}
@@ -20,6 +21,7 @@
       </div>
       {% endfor %}
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery/jquery-3.3.1.min.js"></script>
   <script>
@@ -30,7 +32,7 @@
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 
-      function request_book(book_id, requester, index){
+      function request_book(book_id, owner, index){
         $.ajaxSetup({
           beforeSend: function(xhr, settings) {
               if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -39,7 +41,7 @@
           }
       });
 
-        context = {'book_id': book_id, 'owner': requester }
+        context = {'book_id': book_id, 'owner': owner }
 
         $.ajax({
           type: "POST",

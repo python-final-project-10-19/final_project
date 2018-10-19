@@ -13,6 +13,9 @@ from book_add_app.forms import AddBookForm, DocumentForm
 
 
 def book_list_view(request):
+    """
+        validates if user is logged in, and redirect to the book search page
+    """
     if not request.user.is_authenticated:
         return redirect('home')
 
@@ -21,6 +24,10 @@ def book_list_view(request):
 
 
 def book_add_search(request):
+    """
+        Takes user input, validates it to search the list of books from Google API.
+        Once receive API response, saves the book information (title, author, description, categories, and image url).
+    """
     if not request.user.is_authenticated:
         return redirect('home')
 
@@ -72,6 +79,10 @@ def book_add_search(request):
 
 
 def book_post_view(request):
+    """
+        when user selects a book, it creates an instance of the book object,
+        saves into the db under selected user
+    """
     if request.method == "POST":
         # import pdb; pdb.set_trace()
         # TODO: Add this book to book model for that user.
