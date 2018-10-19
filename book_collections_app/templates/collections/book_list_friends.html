@@ -10,7 +10,7 @@
     <h4>Owned by: {{book.owner}}</h4>
 
     {% if book.status == 'available' %}
-      <input type="button" id="request-button-{{ i }}" value="Request book" onclick="request_book({{book.id}}, {{  fb_id }}, {{ i }})"/>
+      <input type="button" id="request-button-{{ i }}" value="Request book" onclick="request_book({{book.id}}, {{  book.owner_fb_id }}, {{ i }})"/>
     {% elif book.status == 'checked out' %}
       <p>Not available</p>
     {% elif book.status == 'requested' and book.requester == fb_id  %}
@@ -30,7 +30,7 @@
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 
-      function request_book(book_id, requester, index){
+      function request_book(book_id, owner, index){
         $.ajaxSetup({
           beforeSend: function(xhr, settings) {
               if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -39,7 +39,7 @@
           }
       });
 
-        context = {'book_id': book_id, 'owner': requester }
+        context = {'book_id': book_id, 'owner': owner }
 
         $.ajax({
           type: "POST",
