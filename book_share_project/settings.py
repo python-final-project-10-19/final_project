@@ -85,6 +85,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=book_share_project, book_add_app, book_collections_app',
+    '--cover-html'
 
 ]
 
