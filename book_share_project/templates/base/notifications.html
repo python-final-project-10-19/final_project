@@ -8,20 +8,29 @@
 {% endif %}
  <div class="book_sub_nav">
 {% if user.is_authenticated %}
-  <h3 class="welcome_back">Here is a list of notifications</h3>
+  <h3 class="welcome_back">Notification Feed</h3>
+  <br>
   {% for i, notification in notifications %}
 
-    {% if notification.type == 'request' and notification. %}
-      <img src="{{notification.from_picture}}" alt="requester pic">
+      {% if notification.type == 'request' and notification.fb_id == notification.to_user %}
+      <img src="{{notification.picture_from}}" alt="requester pic">
       <p>{{notification.name_from}} requested to borrow {{notification.book_title}}</p>
-      <input type="button" id="request-button-{{ i }}" value="Accept" onclick="handle_notification_response(notification, 'accepted', {{ i }})"/>
-      <input type="button" id="request-button-{{ i }}" value="Decline" onclick="handle_notification_response(notification, 'declined', {{ i }})"/>
+      <input type="button" id="request-button-{{ i }}-accept" value="Accept" onclick="handle_notification_response({{ notification }}, 'accepted', {{ i }})"/>
+      <input type="button" id="request-button-{{ i }}-decline" value="Decline" onclick="handle_notification_response({{ notification }}, 'declined', {{ i }})"/>
 
-    {% elif notification.type == 'response' %}
-      <img src="{{notification.from_picture}}" alt="responder pic">
+      {% elif notification.fb_id == notification.from_user and notification.status == 'accepted' %}
+      <img src="{{notification.picture_from}}" alt="requester pic">
+      <p>Your request to borrow {{notification.book_title}} from {{notification.name_to}} was approved!</p>
+
+      {% elif notification.fb_id == notification.from_user and notification.status == 'declined' %}
+      <img src="{{notification.picture_from}}" alt="requester pic">
+      <p>Your request to borrow {{notification.book_title}} from {{notification.name_to}} was declined :(</p>
+
+      {% elif notification.type == 'response' %}
+      <img src="{{notification.picture_from}}" alt="responder pic">
       <p>{{notification.name_from}} accepted your request to borrow {{notification.book_title}}!</p>
       <input type="button" id="request-button-{{ i }}" value="Send a message"/>
-    {% endif %}
+      {% endif %}
   {% endfor %}
 
 
@@ -48,12 +57,25 @@ function csrfSafeMethod(method) {
 
       context = {'notification': notification, 'response': response}
 
-      $.ajax({
-        type: "POST",
-        url: '/notifications/',
-        data: context,
-        success: $(`#request-button-${index}`).after( "<span>Response sent</span>" ),
-        });
+      if(context['response'] === 'accepted'){
+        $.ajax({
+          type: "POST",
+          url: '/notifications/',
+          data: context,
+          success: $(`#request-button-${index}-accept`).after( "<span>Response sent</span>" ),
+          });
+      }
+
+      if(context['response'] === 'declined'){
+        $.ajax({
+          type: "POST",
+          url: '/notifications/',
+          data: context,
+          success: $(`#request-button-${index}-decline`).after( "<span>Response sent</span>" ),
+          });
+      }
+
+
     }
   </script>
 

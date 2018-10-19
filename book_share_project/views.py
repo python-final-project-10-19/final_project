@@ -65,19 +65,39 @@ def notifications_view(request):
     fb_account = SocialAccount.objects.filter(user__id=request.user.id)
     fb_id = list(fb_account.values('uid'))[0]['uid']
 
-    if request.method == "POST":
-        if request.method.POST('response') == 'accepted':
-            notification = Notifications.objects.filter(id=request.method.POST('notification')['id'])
-            notification.update(status='accepted')
+    if not profile:
 
-            book = Book.objects.filter(id=request.method.POST('notification')['book_id'])
+            endpoint = 'https://graph.facebook.com/{}?fields=picture'.format(uid)
+            headers = {'Authorization': 'Bearer {}'.format(os.environ.get('FB_GRAPH_TOKEN'))}
+            response = requests.get(endpoint, headers=headers).json()
+            picture = response['picture']['data']['url']
+
+            Profile.objects.create(
+                user=request.user,
+                username=request.user.username,
+                email=request.user.email,
+                first_name=request.user.first_name,
+                last_name=request.user.last_name,
+                fb_id=uid,
+                picture=picture,
+            )
+
+
+
+    if request.method == "POST":
+        # import pdb; pdb.set_trace()
+        if request.POST.get('response') == 'accepted':
+            notification = Notifications.objects.filter(id=request.POST.get('notification[id]'))
+            notification.update(status='accepted')
+            # Notifications.objects.create()
+            book = Book.objects.filter(id=request.POST.get('notification[book_id]'))
             book.update(status='checked out')
 
-        if request.method.POST('response') == 'declined':
-            notification = Notifications.objects.filter(id=request.method.POST('notification')['id'])
+        if request.POST.get('response') == 'declined':
+            notification = Notifications.objects.filter(id=request.POST.get('notification[id]'))
             notification.update(status='declined')
 
-            book = Book.objects.filter(id=request.method.POST('notification')['book_id'])
+            book = Book.objects.filter(id=request.POST.get('notification[book_id]'))
             book.update(status='available')
 
         return redirect('/notifications')
@@ -95,9 +115,11 @@ def notifications_view(request):
         book_id = notification.book_id
         book = Book.objects.filter(id=book_id)[0]
         book_title = book.title
+        book_status = book.status
 
         from_user = notification.from_user
         to_user = notification.to_user
+        notification_status = notification.status
         profile_from_user = Profile.objects.filter(fb_id=from_user)[0]
         profile_to_user = Profile.objects.filter(fb_id=to_user)[0]
         picture_from = profile_from_user.picture
@@ -106,12 +128,14 @@ def notifications_view(request):
         name_to = profile_to_user.first_name
 
         notification_object = {
+            'id': notification.id,
             'fb_id': fb_id,
             'from_user': from_user,
             'to_user': to_user,
             'type': type,
             'book_id': book_id,
             'book_title': book_title,
+            'status': notification_status,
             'name_from': name_from,
             'name_to': name_to,
             'picture_from': picture_from,
@@ -123,8 +147,5 @@ def notifications_view(request):
     context = {
         'notifications': enumerate(all_notifications)
     }
-
-    # import pdb; pdb.set_trace()
-    print(all_notifications)
 
     return render(request, 'base/notifications.html', context)

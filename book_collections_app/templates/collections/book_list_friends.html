@@ -16,7 +16,7 @@
       {% elif book.status == 'checked out' %}
         <p>Not available</p>
       {% elif book.status == 'requested' and book.requester == fb_id  %}
-        <p>You already requested</p>
+        <p>Requested!</p>
       {% endif %}
       </div>
       {% endfor %}
