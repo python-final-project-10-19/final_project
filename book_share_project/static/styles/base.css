@@ -10,9 +10,9 @@ body {
     background-attachment: fixed;
 }
 
-main {
-    text-align: center;
-}
+/*main h3{*/
+   /*margin-left: 5em;*/
+/*}*/
 
 header {
     background-color: rgba(93,80,67,0.9);
@@ -89,6 +89,7 @@ button {
 
 .welcome_back{
   font-size: 40px;
+  margin: 0;
 }
 
 /*.sub-nav {*/

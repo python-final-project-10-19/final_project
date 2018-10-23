@@ -49,7 +49,8 @@
 
 /*Book add section*/
 .book_search_add{
-  padding: 10px;
+  padding: 0 10px 20px;
+  margin-left: 4em;
 }
 
 .book_sub_nav{
@@ -75,6 +76,11 @@
 .sub-nav .heading{
   font-size: 3em;
   margin: 1em;
+}
+
+.sub-nav .heading h1{
+
+  padding-left: 7em;
 }
 
 .book_info{
@@ -105,5 +111,8 @@
   padding: 10px;
   color: white;
   background-color: rgba(20, 153, 45, 0.7);
+}
 
+.book_spine{
+  padding-left: 3em;
 }
