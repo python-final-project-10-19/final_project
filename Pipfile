@@ -21,10 +21,12 @@ dj-database-url = "*"
 gunicorn = "*"
 whitenoise = "*"
 django-heroku = "*"
+
 google = "*"
 protobuf = "*"
 google-cloud = "*"
 google-cloud-vision = "*"
+
 
 [dev-packages]
 factory-boy = "*"

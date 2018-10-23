@@ -67,7 +67,7 @@ class TestBaseViews(TestCase):
         self.c.force_login(self.user)
         res = self.c.post('/add/search/', data={'query': 'Lord of the rings'}, follow=True)
         self.assertEqual(res.status_code, 200)
-        self.assertIn(b'John Ronald Reuel Tolkien', res.content)
+        self.assertIn(b'Tolkien', res.content)
 
     def test_smart_scan_view_without_login(self):
         """Test smart scan endpoint without login."""
@@ -79,7 +79,21 @@ class TestBaseViews(TestCase):
         """Test smart scan endpoint without login."""
         self.c.force_login(self.user)
         res = self.c.get('/add/scan/', follow=True)
-        self.assertIn(b'Smart Scan Coming Soon', res.content)
+        self.assertIn(b'Spine Extractor', res.content)
+
+    def test_personal_collections_page_without_login(self):
+        """If not logged in, should redirect to home page"""
+        res = self.c.get('/collections/personal/', follow=True)
+        self.assertEqual(res.status_code, 200)
+        self.assertIn(b'Login', res.content)
+
+    def test_personal_collections_page_with_login(self):
+        """If logged in, user should see logout button. """
+        self.c.force_login(self.user)
+        res = self.c.get('')
+        res = self.c.get('/collections/personal/', follow=True)
+        self.assertEqual(res.status_code, 200)
+        self.assertIn(b'Your Books', res.content)
 
 
 

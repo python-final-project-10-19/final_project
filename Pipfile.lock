@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "11ddb8afee40888598f29b3a3e9379766c5dcafafd0eb610ee2d37edd84f35ca"
+            "sha256": "6c17f75e0c364a3484acfd430b85483d6ed45f4ac7879e99b1c33e5f769f6419"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -30,6 +30,14 @@
                 "sha256:bbbf4b1e5cd2bdb08f915895b51081c041bac22394fdfcfdfbe9f14b77c08bf2"
             ],
             "version": "==0.1.0"
+        },
+        "beautifulsoup4": {
+            "hashes": [
+                "sha256:194ec62a25438adcb3fdb06378b26559eda1ea8a747367d34c33cef9c7f48d57",
+                "sha256:90f8e61121d6ae58362ce3bed8cd997efb00c914eae0ff3d363c32f9a9822d10",
+                "sha256:f0abd31228055d698bb392a826528ea08ebb9959e6bea17c606fd9c9009db938"
+            ],
+            "version": "==4.6.3"
         },
         "bleach": {
             "hashes": [
@@ -186,6 +194,21 @@
             ],
             "markers": "python_version >= '2.7'",
             "version": "==0.2.3"
+        },
+        "google": {
+            "hashes": [
+                "sha256:e94461ee7d0429d447e947e91f51503ed9f664930d21ed6a9a116c7e07e6cb46"
+            ],
+            "index": "pypi",
+            "version": "==2.0.1"
+        },
+        "google-cloud": {
+            "hashes": [
+                "sha256:01430187cf56df10a9ba775dd547393185d4b40741db0ea5889301f8e7a9d5d3",
+                "sha256:fb1ab7b0548fe44b3d538041f0a374505b7f990d448a935ea36649c5ccab5acf"
+            ],
+            "index": "pypi",
+            "version": "==0.34.0"
         },
         "gunicorn": {
             "hashes": [
