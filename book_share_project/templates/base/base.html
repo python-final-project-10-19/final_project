@@ -27,7 +27,7 @@
           <a href="/accounts/facebook/login/?process=login"><li>Login</li></a>
         {% elif user.is_superuser %}
           <a href="{% url "admin:index" %}"><li>Admin Console</li></a>
-          <a href="{% url "book_list" %}"><li>Books</li></a>
+          <a href="{% url "book_list_landing" %}"><li>Books</li></a>
           <a href="{% url "logout" %}"><li>Logout</li></a>
         {% else %}
           <a href="{% url "notifications" %}"><li>Home</li></a>

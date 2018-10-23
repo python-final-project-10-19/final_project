@@ -11,18 +11,19 @@ def home_view(request):
     """
         Home page view,
         if user is logged-in, validates if current user is saved.
-        If current user is a new user, saves into our database(Profile model)
+        If current user is a new user, saves into our database (Profile model)
     """
     if request.user.is_authenticated:
 
         profile = Profile.objects.filter(user__id=request.user.id)
 
-        fb_account = SocialAccount.objects.filter(user__id=request.user.id)
-
-        # We have the right social_account instance (i.e., table row). There has to be an easier way to grab the uid (i.e., the cell in that row)
-        uid = list(fb_account.values('uid'))[0]['uid']
-
         if not profile:
+            fb_account = SocialAccount.objects.filter(user__id=request.user.id)
+
+            # We have the right social_account instance (i.e., table row). There has to be an easier way to grab the uid (i.e., the cell in that row)
+
+            uid = list(fb_account.values('uid'))[0]['uid']
+
 
             endpoint = 'https://graph.facebook.com/{}?fields=picture'.format(uid)
             headers = {'Authorization': 'Bearer {}'.format(os.environ.get('FB_GRAPH_TOKEN'))}
