@@ -72,7 +72,7 @@ pyzmq==17.1.2
 qtconsole==4.4.2
 requests==2.20.0
 requests-oauthlib==1.0.0
-rsa==4.0
+rsa==4.1
 Send2Trash==1.5.0
 simplegeneric==0.8.1
 six==1.11.0
